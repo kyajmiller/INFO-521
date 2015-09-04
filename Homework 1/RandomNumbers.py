@@ -14,4 +14,17 @@ plus = a + b
 elementWiseMultiply = a * b
 dotPointMultiply = aTranspose * b
 
+print(plus)
+print(elementWiseMultiply)
+print(dotPointMultiply)
+
 numpy.random.seed(seed=2)
+X = numpy.random.rand(3, 3)
+
+aTransposeX = aTranspose * X
+aTransposeXb = aTranspose * X * b
+Xinverse = numpy.linalg.inv(X)
+
+print(aTransposeX)
+print(aTransposeXb)
+print(Xinverse)
