@@ -241,7 +241,8 @@ def run_cv( K, maxorder, x, t, testx, testt, randomize_data=False, title='CV' ):
 
             # find the least-squares fit!
             # NOTE: YOU NEED TO FILL THIS IN
-            w =  #### YOUR CODE HERE####
+            # w =  #### YOUR CODE HERE####
+            w = np.dot(np.linalg.inv(np.dot(trainX.transpose(), trainX)), (np.dot(trainX.transpose(), traint)))
 
             # calculate and record the mean squared losses
 
