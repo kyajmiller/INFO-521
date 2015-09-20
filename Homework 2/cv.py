@@ -218,7 +218,7 @@ def run_problem():
 
     K = 10
 
-    run_cv(K, 7, x, t, testx, testt, randomize_data=False, title='{0}-fold CV'.format(K))
+    run_cv(K, 7, x, t, testx, testt, randomize_data=True, title='{0}-fold CV'.format(K))
 
 
 # run_demo()
