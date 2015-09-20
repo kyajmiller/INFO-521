@@ -207,11 +207,11 @@ def run_demo():
 
 
 def run_problem():
+    # this test stuff is lifted from run_demo, completely unimportant, but run_cv just needs values to go there
     w = np.array([0, 1, 5, 2])
     xmin = -6
     xmax = 6
     sigma = 50
-
     testx, testt, = generate_synthetic_data(1000, w, xmin=xmin, xmax=xmax, sigma=sigma)
 
     data = read_data('synthdata2015.csv')
