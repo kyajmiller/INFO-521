@@ -130,7 +130,8 @@ def fitpoly(x, t, model_order):
         X[:, k] = np.power(x, k)
 
     #### YOUR CODE HERE ####
-    w = None  # Calculate w vector (as an np.array)
+    #w = None  # Calculate w vector (as an np.array)
+    w = np.dot(np.dot(np.linalg.inv(np.dot(X.transpose(), X)), X.transpose()), t)
     
     return w
 
@@ -139,14 +140,14 @@ def fitpoly(x, t, model_order):
 # Script to run on particular data set
 # -------------------------------------------------------------------------
 
-data_path = '../data/womens100.csv'       ## Problem 2
-# data_path = '../data/synthdata2015.csv'   ## Problem 4
+data_path = 'womens100.csv'       ## Problem 2
+# data_path = 'synthdata2015.csv'   ## Problem 4
 
 # -----------
 # The following data is provided just for fun, not used in HW 2.
 # This is the data for the men's 100, which has been the recurring
 # example in the class
-# data_path = '../data/mens100.csv'
+# data_path = 'mens100.csv'
 
 model_order = 1  # for problem 2
 # model_order = 3  # for problem 4
