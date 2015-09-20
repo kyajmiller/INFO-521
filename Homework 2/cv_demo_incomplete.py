@@ -241,7 +241,7 @@ def run_cv( K, maxorder, x, t, testx, testt, randomize_data=False, title='CV' ):
 
             # find the least-squares fit!
             # NOTE: YOU NEED TO FILL THIS IN
-            w = "blah" #### YOUR CODE HERE, remove the blah ####
+            w =  #### YOUR CODE HERE####
 
             # calculate and record the mean squared losses
 
