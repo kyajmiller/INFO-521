@@ -204,6 +204,24 @@ def run_demo():
     run_cv(K, 7, x, t, testx, testt, randomize_data=False, title='{0}-fold CV'.format(K))
 
 
-run_demo()
+def run_problem():
+    w = np.array([0, 1, 5, 2])
+    xmin = -6
+    xmax = 6
+    sigma = 50
+
+    testx, testt, = generate_synthetic_data(1000, w, xmin=xmin, xmax=xmax, sigma=sigma)
+
+    data = read_data('synthdata2015.csv')
+    x = data[:, 0]
+    t = data[:, 1]
+
+    K = 10
+
+    run_cv(K, 7, x, t, testx, testt, randomize_data=False, title='{0}-fold CV'.format(K))
+
+
+# run_demo()
+run_problem()
 
 plt.show()
