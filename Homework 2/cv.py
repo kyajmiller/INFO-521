@@ -187,25 +187,6 @@ def run_cv(K, maxorder, x, t, testx, testt, randomize_data=False, title='CV'):
 
     return best_poly, min_mean_log_cv_loss
 
-
-def run_demo():
-    # Parameters for synthetic data model
-    # t = x - x^2 + 5x^3 + N(0, sigma)
-    w = np.array([0, 1, 5, 2])
-    xmin = -6
-    xmax = 6
-    sigma = 50
-
-    x, t = generate_synthetic_data(100, w, xmin=xmin, xmax=xmax, sigma=sigma)
-    testx, testt, = generate_synthetic_data(1000, w, xmin=xmin, xmax=xmax, sigma=sigma)
-
-    plot_synthetic_data(x, t, w)
-
-    K = 10
-
-    run_cv(K, 7, x, t, testx, testt, randomize_data=False, title='{0}-fold CV'.format(K))
-
-
 def run_problem_10fold():
     # this test stuff is lifted from run_demo, completely unimportant, but run_cv just needs values to go there
     w = np.array([0, 1, 5, 2])
@@ -221,9 +202,28 @@ def run_problem_10fold():
     K = 10
 
     run_cv(K, 7, x, t, testx, testt, randomize_data=True, title='{0}-fold CV'.format(K))
+    run_cv(K, 7, x, t, testx, testt, randomize_data=True, title='{0}-fold CV'.format(K))
+    run_cv(K, 7, x, t, testx, testt, randomize_data=True, title='{0}-fold CV'.format(K))
 
 
-# run_demo()
+def run_problem_LOOCV():
+    w = np.array([0, 1, 5, 2])
+    xmin = -6
+    xmax = 6
+    sigma = 50
+    testx, testt, = generate_synthetic_data(1000, w, xmin=xmin, xmax=xmax, sigma=sigma)
+
+    data = read_data('synthdata2015.csv')
+    x = data[:, 0]
+    t = data[:, 1]
+
+    K = len(x)
+
+    run_cv(K, 7, x, t, testx, testt, randomize_data=True, title='{0}-fold CV'.format(K))
+    run_cv(K, 7, x, t, testx, testt, randomize_data=True, title='{0}-fold CV'.format(K))
+    run_cv(K, 7, x, t, testx, testt, randomize_data=True, title='{0}-fold CV'.format(K))
+
 run_problem_10fold()
+run_problem_LOOCV()
 
 plt.show()
