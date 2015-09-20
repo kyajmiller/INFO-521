@@ -2,6 +2,7 @@ def get_value(x):
     t = (-1.50718122e-02 * x) + 4.09241546e+01
     return t
 
+
 def getSquaredError(predicted, actual):
     difference = actual - predicted
     squaredError = difference * difference
