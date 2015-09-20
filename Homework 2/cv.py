@@ -103,6 +103,7 @@ def plot_cv_results(train_loss, cv_loss, ind_loss, log_scale_p=False):
     plt.pause(.1)
     plt.ylim(min_ylim, max_ylim)
 
+    '''
     plt.subplot(133)
     plt.plot(x, ind_loss_mean, linewidth=2)
     plt.xlabel('Model Order')
@@ -110,6 +111,7 @@ def plot_cv_results(train_loss, cv_loss, ind_loss, log_scale_p=False):
     plt.title('Independent Test Loss')
     plt.pause(.1)
     plt.ylim(min_ylim, max_ylim)
+    '''
 
     plt.subplots_adjust(right=0.95, wspace=0.4)
     plt.draw()
@@ -170,7 +172,7 @@ def run_cv(K, maxorder, x, t, testx, testt, randomize_data=False, title='CV'):
     print '\n----------------------\nResults for {0}'.format(title)
     print 'mean_log_train_loss:\n{0}'.format(mean_log_train_loss)
     print 'mean_log_cv_loss:\n{0}'.format(mean_log_cv_loss)
-    print 'mean_log_ind_loss:\n{0}'.format(mean_log_ind_loss)
+    # print 'mean_log_ind_loss:\n{0}'.format(mean_log_ind_loss)
 
     min_mean_log_cv_loss = min(mean_log_cv_loss)
     # TODO: has to be better way to get the min index...
