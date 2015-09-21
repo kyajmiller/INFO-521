@@ -87,7 +87,7 @@ def plot_cv_results(train_loss, cv_loss, ind_loss, log_scale_p=False):
     max_ylim = max(list(train_loss_mean) + list(cv_loss_mean) + list(ind_loss_mean))
     max_ylim = int(np.ceil(max_ylim))
 
-    plt.subplot(131)
+    plt.subplot(121)
     plt.plot(x, train_loss_mean, linewidth=2)
     plt.xlabel('Model Order')
     plt.ylabel(ylabel)
@@ -95,7 +95,7 @@ def plot_cv_results(train_loss, cv_loss, ind_loss, log_scale_p=False):
     plt.pause(.1)
     plt.ylim(min_ylim, max_ylim)
 
-    plt.subplot(132)
+    plt.subplot(122)
     plt.plot(x, cv_loss_mean, linewidth=2)
     plt.xlabel('Model Order')
     plt.ylabel(ylabel)
