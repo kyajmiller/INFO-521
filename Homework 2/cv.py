@@ -187,6 +187,7 @@ def run_cv(K, maxorder, x, t, testx, testt, randomize_data=False, title='CV'):
 
     return best_poly, min_mean_log_cv_loss
 
+
 def run_problem_10fold():
     # this test stuff is lifted from run_demo, completely unimportant, but run_cv just needs values to go there
     w = np.array([0, 1, 5, 2])
