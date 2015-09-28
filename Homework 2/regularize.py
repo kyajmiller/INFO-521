@@ -197,10 +197,11 @@ def run_cv(K, x, t, lambd, randomize_data=False, title='CV'):
     # plot_cv_results(train_loss, cv_loss, ind_loss, log_scale_p=True)
 
     #return best_poly, min_mean_log_cv_loss
+    return mean_log_cv_loss
 
 
 def run_problem():
-    lambd = [0, 0.0000000001, 0.000000001, 0.00000001, 0.0000001, 0.000001, 0.00001, 0.0001, 0.001, 0.01, 0.1]
+    lambd = [0.0000000001, 0.000000001, 0.00000001, 0.0000001, 0.000001, 0.00001, 0.0001, 0.001, 0.01, 0.1]
 
     data = read_data('synthdata2015.csv')
     x = data[:, 0]
@@ -208,8 +209,19 @@ def run_problem():
 
     K = 10
 
+    results = []
+
     for lam in lambd:
-        run_cv(K, x, t, lam, randomize_data=True, title='regularized squares')
+        results.append(run_cv(K, x, t, lam, randomize_data=True, title='regularized squares'))
+
+    min_loss = min(results)
+    print '\n'
+    print 'min loss: %s' % min_loss
+
+    for i in range(len(lambd)):
+        if results[i] == min_loss:
+            print 'best lambda value: %s' % lambd[i]
+
 
 
 run_problem()
