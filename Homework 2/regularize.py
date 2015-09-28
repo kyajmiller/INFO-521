@@ -135,7 +135,7 @@ def run_cv(K, x, t, lambd, randomize_data=False, title='CV'):
         traint = np.copy(t)
         traint = np.delete(traint, np.arange(fold_indices[fold], fold_indices[fold + 1]), 0)
 
-        w = np.dot(np.linalg.inv(np.dot(trainX.transpose(), trainX) + N * lambd * np.eye(trainX.shape[1])),
+        w = np.dot(np.dot(trainX.transpose(), trainX) + N * lambd * np.eye(trainX.shape[1]),
                    np.dot(trainX.transpose(), traint))
 
         fold_pred = np.dot(foldX, w)
