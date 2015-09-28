@@ -184,18 +184,19 @@ def run_cv(K, x, t, lambd, randomize_data=False, title='CV'):
     print 'mean_log_cv_loss:\n{0}'.format(mean_log_cv_loss)
     # print 'mean_log_ind_loss:\n{0}'.format(mean_log_ind_loss)
 
-    min_mean_log_cv_loss = min(mean_log_cv_loss)
+    # min_mean_log_cv_loss = min(mean_log_cv_loss)
     # TODO: has to be better way to get the min index...
-    best_poly = [i for i, j in enumerate(mean_log_cv_loss) if j == min_mean_log_cv_loss][0]
+    #best_poly = [i for i, j in enumerate(mean_log_cv_loss) if j == min_mean_log_cv_loss][0]
 
-    print 'minimum mean_log_cv_loss of {0} for order {1}'.format(min_mean_log_cv_loss, best_poly)
+    # print 'minimum mean_log_cv_loss of {0} for order {1}'.format(min_mean_log_cv_loss, best_poly)
+    print 'lambda value: %s; mean_log_cv_loss: %s' % (lambd, mean_log_cv_loss)
 
-    plot_cv_results(log_train_loss, log_cv_loss, log_scale_p=True)
+    #plot_cv_results(log_train_loss, log_cv_loss, log_scale_p=True)
 
     # Uncomment to plot direct-scale loss results
     # plot_cv_results(train_loss, cv_loss, ind_loss, log_scale_p=True)
 
-    return best_poly, min_mean_log_cv_loss
+    #return best_poly, min_mean_log_cv_loss
 
 
 def run_problem():
