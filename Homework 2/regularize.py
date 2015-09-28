@@ -144,59 +144,21 @@ def run_cv(K, x, t, lambd, randomize_data=False, title='CV'):
         train_pred = np.dot(trainX, w)
         train_loss[fold] = np.mean(np.power(train_pred - traint, 2))
 
-    '''
-    for p in range(maxorder + 1):
-        X[:, p] = np.power(x, p)
-
-        testX[:, p] = np.power(testx, p)
-
-        for fold in range(K):
-            foldX = X[fold_indices[fold]:fold_indices[fold + 1], 0:p + 1]
-            foldt = t[fold_indices[fold]:fold_indices[fold + 1]]
-
-            trainX = np.copy(X[:, 0:p + 1])
-            trainX = np.delete(trainX, np.arange(fold_indices[fold], fold_indices[fold + 1]), 0)
-
-            traint = np.copy(t)
-            traint = np.delete(traint, np.arange(fold_indices[fold], fold_indices[fold + 1]), 0)
-
-            w = np.dot(np.linalg.inv(np.dot(trainX.transpose(), trainX)), (np.dot(trainX.transpose(), traint)))
-
-            fold_pred = np.dot(foldX, w)
-            cv_loss[fold, p] = np.mean(np.power(fold_pred - foldt, 2))
-
-            ind_pred = np.dot(testX[:, 0:p + 1], w)
-            ind_loss[fold, p] = np.mean(np.power(ind_pred - testt, 2))
-
-            train_pred = np.dot(trainX, w)
-            train_loss[fold, p] = np.mean(np.power(train_pred - traint, 2))
-    '''
     log_cv_loss = np.log(cv_loss)
-    # log_ind_loss = np.log(ind_loss)
     log_train_loss = np.log(train_loss)
 
     mean_log_cv_loss = np.mean(log_cv_loss, 0)
-    # mean_log_ind_loss = np.mean(log_ind_loss, 0)
     mean_log_train_loss = np.mean(log_train_loss, 0)
 
     print '\n----------------------\nResults for {0}'.format(title)
     print 'mean_log_train_loss:\n{0}'.format(mean_log_train_loss)
     print 'mean_log_cv_loss:\n{0}'.format(mean_log_cv_loss)
-    # print 'mean_log_ind_loss:\n{0}'.format(mean_log_ind_loss)
 
-    # min_mean_log_cv_loss = min(mean_log_cv_loss)
-    # TODO: has to be better way to get the min index...
-    #best_poly = [i for i, j in enumerate(mean_log_cv_loss) if j == min_mean_log_cv_loss][0]
-
-    # print 'minimum mean_log_cv_loss of {0} for order {1}'.format(min_mean_log_cv_loss, best_poly)
     print 'lambda value: %s; mean_log_cv_loss: %s' % (lambd, mean_log_cv_loss)
-
-    #plot_cv_results(log_train_loss, log_cv_loss, log_scale_p=True)
 
     # Uncomment to plot direct-scale loss results
     # plot_cv_results(train_loss, cv_loss, ind_loss, log_scale_p=True)
 
-    #return best_poly, min_mean_log_cv_loss
     return mean_log_cv_loss
 
 
