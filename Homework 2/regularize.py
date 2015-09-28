@@ -179,16 +179,16 @@ def run_cv(K, x, t, lambd, randomize_data=False, title='CV'):
     # mean_log_ind_loss = np.mean(log_ind_loss, 0)
     mean_log_train_loss = np.mean(log_train_loss, 0)
 
-    print('\n----------------------\nResults for {0}'.format(title))
-    print('mean_log_train_loss:\n{0}'.format(mean_log_train_loss))
-    print('mean_log_cv_loss:\n{0}'.format(mean_log_cv_loss))
+    print '\n----------------------\nResults for {0}'.format(title)
+    print 'mean_log_train_loss:\n{0}'.format(mean_log_train_loss)
+    print 'mean_log_cv_loss:\n{0}'.format(mean_log_cv_loss)
     # print 'mean_log_ind_loss:\n{0}'.format(mean_log_ind_loss)
 
     min_mean_log_cv_loss = min(mean_log_cv_loss)
     # TODO: has to be better way to get the min index...
     best_poly = [i for i, j in enumerate(mean_log_cv_loss) if j == min_mean_log_cv_loss][0]
 
-    print('minimum mean_log_cv_loss of {0} for order {1}'.format(min_mean_log_cv_loss, best_poly))
+    print 'minimum mean_log_cv_loss of {0} for order {1}'.format(min_mean_log_cv_loss, best_poly)
 
     plot_cv_results(log_train_loss, log_cv_loss, log_scale_p=True)
 
