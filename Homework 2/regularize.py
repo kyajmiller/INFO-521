@@ -198,45 +198,6 @@ def run_cv(K, x, t, lambd, randomize_data=False, title='CV'):
     return best_poly, min_mean_log_cv_loss
 
 
-'''
-def run_problem_10fold():
-    # this test stuff is lifted from run_demo, completely unimportant, but run_cv just needs values to go there
-    w = np.array([0, 1, 5, 2])
-    xmin = -6
-    xmax = 6
-    sigma = 50
-    testx, testt, = generate_synthetic_data(1000, w, xmin=xmin, xmax=xmax, sigma=sigma)
-
-    data = read_data('synthdata2015.csv')
-    x = data[:, 0]
-    t = data[:, 1]
-
-    K = 10
-
-    run_cv(K, 7, x, t, testx, testt, randomize_data=True, title='{0}-fold CV'.format(K))
-    run_cv(K, 7, x, t, testx, testt, randomize_data=True, title='{0}-fold CV'.format(K))
-    run_cv(K, 7, x, t, testx, testt, randomize_data=True, title='{0}-fold CV'.format(K))
-
-
-def run_problem_LOOCV():
-    w = np.array([0, 1, 5, 2])
-    xmin = -6
-    xmax = 6
-    sigma = 50
-    testx, testt, = generate_synthetic_data(1000, w, xmin=xmin, xmax=xmax, sigma=sigma)
-
-    data = read_data('synthdata2015.csv')
-    x = data[:, 0]
-    t = data[:, 1]
-
-    K = len(x)
-
-    run_cv(K, 7, x, t, testx, testt, randomize_data=True, title='{0}-fold CV'.format(K))
-    run_cv(K, 7, x, t, testx, testt, randomize_data=True, title='{0}-fold CV'.format(K))
-    run_cv(K, 7, x, t, testx, testt, randomize_data=True, title='{0}-fold CV'.format(K))
-'''
-
-
 def run_problem():
     lambd = [0, 1 * np.power(10, -10), 1 * np.power(10, -9), 1 * np.power(10, -8), 1 * np.power(10, -7),
              1 * np.power(10, -6), 1 * np.power(10, -5), 1 * np.power(10, -4), 1 * np.power(10, -3),
