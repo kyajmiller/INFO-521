@@ -217,6 +217,8 @@ def run_problem():
 
     print 'Identified model parameters w:', w
 
+    plot_model(x, w)
+
 
 
 run_problem()
