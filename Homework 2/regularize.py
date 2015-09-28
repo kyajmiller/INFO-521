@@ -135,7 +135,7 @@ def run_cv(K, x, t, lambd, randomize_data=False, title='CV'):
         traint = np.copy(t)
         traint = np.delete(traint, np.arange(fold_indices[fold], fold_indices[fold + 1]), 0)
 
-        w = np.dot(np.linalg.inv(np.dot(trainX.transpose(), trainX) + N * np.eye(trainX.shape[1])),
+        w = np.dot(np.linalg.inv(np.dot(trainX.transpose(), trainX) + N * lambd * np.eye(trainX.shape[1])),
                    np.dot(trainX.transpose(), traint))
 
         fold_pred = np.dot(foldX, w)
@@ -238,7 +238,9 @@ def run_problem_LOOCV():
 
 
 def run_problem():
-    lambd = np.arange(0, 0.1, 0.01)
+    lambd = [0, 1 * np.power(10, -10), 1 * np.power(10, -9), 1 * np.power(10, -8), 1 * np.power(10, -7),
+             1 * np.power(10, -6), 1 * np.power(10, -5), 1 * np.power(10, -4), 1 * np.power(10, -3),
+             1 * np.power(10, -2), 1 * np.power(10, -1), 0.1]
 
     data = read_data('synthdata2015.csv')
     x = data[:, 0]
