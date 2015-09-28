@@ -120,8 +120,8 @@ def run_cv(K, x, t, lambd, randomize_data=False, title='CV'):
 
     fold_indices = map(lambda x: int(x), np.linspace(0, N, K + 1))
 
-    cv_loss = np.zeros((K, p))
-    train_loss = np.zeros((K, p))
+    cv_loss = np.zeros((K))
+    train_loss = np.zeros((K))
 
     X[:, p] = np.power(x, p)
 
@@ -139,10 +139,10 @@ def run_cv(K, x, t, lambd, randomize_data=False, title='CV'):
                    np.dot(trainX.transpose(), traint))
 
         fold_pred = np.dot(foldX, w)
-        cv_loss[fold, p] = np.mean(np.power(fold_pred - foldt, 2))
+        cv_loss[fold] = np.mean(np.power(fold_pred - foldt, 2))
 
         train_pred = np.dot(trainX, w)
-        train_loss[fold, p] = np.mean(np.power(train_pred - traint, 2))
+        train_loss[fold] = np.mean(np.power(train_pred - traint, 2))
 
     '''
     for p in range(maxorder + 1):
@@ -199,9 +199,7 @@ def run_cv(K, x, t, lambd, randomize_data=False, title='CV'):
 
 
 def run_problem():
-    lambd = [0, 1 * np.power(10, -10), 1 * np.power(10, -9), 1 * np.power(10, -8), 1 * np.power(10, -7),
-             1 * np.power(10, -6), 1 * np.power(10, -5), 1 * np.power(10, -4), 1 * np.power(10, -3),
-             1 * np.power(10, -2), 1 * np.power(10, -1), 0.1]
+    lambd = [0, 0.0000000001, 0.000000001, 0.00000001, 0.0000001, 0.000001, 0.00001, 0.0001, 0.001, 0.01, 0.1]
 
     data = read_data('synthdata2015.csv')
     x = data[:, 0]
