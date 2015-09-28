@@ -107,6 +107,31 @@ def plot_cv_results(train_loss, cv_loss, log_scale_p=False):
     plt.draw()
 
 
+def plot_loss_by_lambda_value(lambdaValues, resultsList):
+    plt.figure()
+    plt.title('RSE values by lambda')
+    plt.xlabel('lambda value')
+    plt.ylabel('mean log loss')
+    plt.plot(lambdaValues, resultsList)
+    plt.show()
+
+
+def fitpoly(x, t, best_lam, model_order=7):
+    X = np.zeros((x.shape[0], model_order + 1))
+    for k in range(model_order + 1):  # w.size
+        X[:, k] = np.power(x, k)
+
+    N = x.shape[0]
+
+    # w = np.dot(np.dot(np.linalg.inv(np.dot(X.transpose(), X)), X.transpose()), t)
+
+
+
+    w = np.dot(np.dot(X.transpose(), X) + N * best_lam * np.eye(X.shape[1]),
+               np.dot(X.transpose(), t))
+    return w
+
+
 def run_cv(K, x, t, lambd, randomize_data=False, title='CV'):
     N = x.shape[0]
     p = 7
@@ -180,12 +205,21 @@ def run_problem():
     print '\n'
     print 'min loss: %s' % min_loss
 
+    best_lam = 0
+
     for i in range(len(lambd)):
         if results[i] == min_loss:
+            best_lam = lambd[i]
             print 'best lambda value: %s' % lambd[i]
+
+    plot_data(x, t)
+    w = fitpoly(x, t, best_lam)
+
+    print 'Identified model parameters w:', w
 
 
 
 run_problem()
+
 
 plt.show()
