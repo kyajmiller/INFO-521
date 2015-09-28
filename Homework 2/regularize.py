@@ -218,6 +218,7 @@ def run_problem():
     print 'Identified model parameters w:', w
 
     plot_model(x, w)
+    plot_loss_by_lambda_value(lambd, results)
 
 
 
