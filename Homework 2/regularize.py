@@ -123,10 +123,6 @@ def fitpoly(x, t, best_lam, model_order=7):
 
     N = x.shape[0]
 
-    # w = np.dot(np.dot(np.linalg.inv(np.dot(X.transpose(), X)), X.transpose()), t)
-
-
-
     w = np.dot(np.dot(X.transpose(), X) + N * best_lam * np.eye(X.shape[1]),
                np.dot(X.transpose(), t))
     return w
@@ -181,9 +177,6 @@ def run_cv(K, x, t, lambd, randomize_data=False, title='CV'):
 
     print 'lambda value: %s; mean_log_cv_loss: %s' % (lambd, mean_log_cv_loss)
 
-    # Uncomment to plot direct-scale loss results
-    # plot_cv_results(train_loss, cv_loss, ind_loss, log_scale_p=True)
-
     return mean_log_cv_loss
 
 
@@ -223,6 +216,4 @@ def run_problem():
 
 
 run_problem()
-
-
 plt.show()
