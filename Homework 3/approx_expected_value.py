@@ -36,12 +36,12 @@ for i in range(sample_sizes.shape[0]):
 plt.figure()
 # plot the curve of the estimation of the expected value of f(x)=y^2
 plt.plot(sample_sizes, expX_evol)
-# The true, analytic result of the expected value of f(y)=y^2 where y ~ U(0,1): $\frac{1}{3}$
+# The true, analytic result of the expected value of f(x) = 60 + 0.1x + 0.5x^3 + 0.05x^4 where x ~ U(-10,5): $\frac{871.6}{15}$
 # plot the analytic expected result as a red line:
-plt.plot(np.array([sample_sizes[0], sample_sizes[-1]]), np.array([1. / 3, 1. / 3]), color='r')
+plt.plot(np.array([sample_sizes[0], sample_sizes[-1]]), np.array([expX, expX]), color='r')
 plt.xlabel('Sample size')
 plt.ylabel('Approximation of expectation')
-plt.title('Approximation of expectation of $f(y) = y^2$')
+plt.title('Approximation of expectation of $f(x) = 60 + 0.1x + 0.5x^3 + 0.05x^4$')
 plt.pause(.1)  # required on some systems so that rendering can happen
 
 plt.show()  # keeps the plot open
