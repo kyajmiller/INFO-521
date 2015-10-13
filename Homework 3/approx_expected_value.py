@@ -25,16 +25,16 @@ print '\nSample-based approximation: {:f}'.format(expX)
 
 # Store the evolution of the approximation, every 10 samples
 sample_sizes = np.arange(1, xs.shape[0], 10)
-ey2_evol = np.zeros((sample_sizes.shape[0]))  # storage for the evolving estimate...
+expX_evol = np.zeros((sample_sizes.shape[0]))  # storage for the evolving estimate...
 # the following computes the mean of the sequence up to i, as i iterates
 # through the sequence, storing the mean in ey2_evol:
 for i in range(sample_sizes.shape[0]):
-    ey2_evol[i] = np.mean(np.power(xs[0:sample_sizes[i]], 2))
+    expX_evol[i] = np.mean(np.power(xs[0:sample_sizes[i]], 2))
 
 # Create plot of evolution of the approximation
 plt.figure()
 # plot the curve of the estimation of the expected value of f(x)=y^2
-plt.plot(sample_sizes, ey2_evol)
+plt.plot(sample_sizes, expX_evol)
 # The true, analytic result of the expected value of f(y)=y^2 where y ~ U(0,1): $\frac{1}{3}$
 # plot the analytic expected result as a red line:
 plt.plot(np.array([sample_sizes[0], sample_sizes[-1]]), np.array([1. / 3, 1. / 3]), color='r')
