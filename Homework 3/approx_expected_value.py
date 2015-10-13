@@ -27,9 +27,10 @@ print '\nSample-based approximation: {:f}'.format(expX)
 sample_sizes = np.arange(1, xs.shape[0], 10)
 expX_evol = np.zeros((sample_sizes.shape[0]))  # storage for the evolving estimate...
 # the following computes the mean of the sequence up to i, as i iterates
-# through the sequence, storing the mean in ey2_evol:
+# through the sequence, storing the mean in expX_evol:
 for i in range(sample_sizes.shape[0]):
-    expX_evol[i] = np.mean(np.power(xs[0:sample_sizes[i]], 2))
+    expX_evol[i] = np.mean((60 + (0.1 * xs[0:sample_sizes[i]]) + (0.5 * np.power(xs[0:sample_sizes[i]], 3)) + (
+    0.05 * np.power(xs[0:sample_sizes[i]], 4))))
 
 # Create plot of evolution of the approximation
 plt.figure()
