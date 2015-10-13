@@ -30,7 +30,7 @@ expX_evol = np.zeros((sample_sizes.shape[0]))  # storage for the evolving estima
 # through the sequence, storing the mean in expX_evol:
 for i in range(sample_sizes.shape[0]):
     expX_evol[i] = np.mean((60 + (0.1 * xs[0:sample_sizes[i]]) + (0.5 * np.power(xs[0:sample_sizes[i]], 3)) + (
-    0.05 * np.power(xs[0:sample_sizes[i]], 4))))
+        0.05 * np.power(xs[0:sample_sizes[i]], 4))))
 
 # Create plot of evolution of the approximation
 plt.figure()
