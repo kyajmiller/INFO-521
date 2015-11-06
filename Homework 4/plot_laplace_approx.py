@@ -54,8 +54,8 @@ def plotBetaPosteriorAndLaplaceApproximation(a, B, N, y):
     betaT = beta.pdf(x, a, B)
     plt.plot(x, betaT, 'b')
 
-    normT = norm.pdf(x, loc=r, scale=math.sqrt(var))
-    plt.plot(x, normT, 'r--')
+    laplaceT = norm.pdf(x, loc=r, scale=math.sqrt(var))
+    plt.plot(x, laplaceT, 'r--')
 
 
 
