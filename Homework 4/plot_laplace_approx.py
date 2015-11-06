@@ -2,6 +2,7 @@ __author__ = 'Kya'
 from __future__ import division
 import numpy
 import math
+import scipy
 import matplotlib.pyplot as plt
 
 def plotFirstSet():
@@ -10,7 +11,9 @@ def plotFirstSet():
     N = 20
     y = 10
 
+    plotBetaPosteriorAndLaplaceApproximation(a, B, N, y)
 
-def
-r = (1 - a - y)/(1 - a - (2 * y) + B + N)
-var = (-math.pow(r, 2) * (math.pow((1 - r), 2))) / ((math.pow((1 - r), 2) * (1 - a - y)) - (math.pow(r, 2) * (B - N + y)))
+
+def plotBetaPosteriorAndLaplaceApproximation(a, B, N, y):
+    r = (1 - a - y)/(1 - a - (2 * y) + B + N)
+    var = (-math.pow(r, 2) * (math.pow((1 - r), 2))) / ((math.pow((1 - r), 2) * (1 - a - y)) - (math.pow(r, 2) * (B - N + y)))
