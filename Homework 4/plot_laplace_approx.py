@@ -5,6 +5,7 @@ import math
 import scipy
 import matplotlib.pyplot as plt
 
+
 def plotFirstSet():
     a = 5
     B = 5
