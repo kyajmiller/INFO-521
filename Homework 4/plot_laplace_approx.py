@@ -12,9 +12,7 @@ def plotBetaPosteriorAndLaplaceApproximation(a, B, N, y):
         (math.pow((1 - r), 2) * (1 - a - y)) + (math.pow(r, 2) * (1 - B - N + y)))
     x = numpy.linspace(0.01, 1, 1000)
 
-    print(r)
-    print(var)
-
+    plt.figure()
     plt.title("True Beta Posterior & Laplace Approximation (a=%s, B=%s, N=%s, y=%s)" % (a, B, N, y))
     plt.xlabel("r")
     plt.ylabel("p(r|y)")
