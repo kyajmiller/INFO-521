@@ -48,6 +48,8 @@ def plotBetaPosteriorAndLaplaceApproximation(a, B, N, y):
     print(var)
 
     plt.title("True Beta Posterior & Laplace Approximation (a=%s, B=%s, N=%s, y=%s)" % (a, B, N, y))
+    plt.xlabel("r")
+    plt.ylabel("p(r|y)")
 
     betaT = beta.pdf(x, a, B)
     plt.plot(x, betaT, 'b')
