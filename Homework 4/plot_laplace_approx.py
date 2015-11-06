@@ -19,10 +19,17 @@ def plotFirstSet():
 def plotBetaPosteriorAndLaplaceApproximation(a, B, N, y):
     r = (1 - a - y)/(1 - a - (2 * y) + B + N)
     var = (-math.pow(r, 2) * (math.pow((1 - r), 2))) / ((math.pow((1 - r), 2) * (1 - a - y)) - (math.pow(r, 2) * (B - N + y)))
-    x = numpy.arange(0.01, 1, 0.01)
+    x = numpy.linspace(0.01, 1, 1000)
 
     t = beta.pdf(x, a, B)
     plt.plot(x, t)
+
+    laplace = beta.pdf(x, a, B, loc=r, scale=var)
+    plt.plot(x, laplace, 'r')
+    plt.show()
+
+
+
 
 
 plotFirstSet()
