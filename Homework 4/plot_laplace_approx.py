@@ -3,39 +3,7 @@ from scipy.stats import beta
 from scipy.stats import norm
 import numpy
 import math
-
 import matplotlib.pyplot as plt
-
-
-def plotFirstSet():
-    a = 5
-    B = 5
-    N = 20
-    y = 10
-
-    plt.figure(1)
-    plotBetaPosteriorAndLaplaceApproximation(a, B, N, y)
-
-
-def plotSecondSet():
-    a = 3
-    B = 15
-    N = 10
-    y = 3
-
-    plt.figure(2)
-
-    plotBetaPosteriorAndLaplaceApproximation(a, B, N, y)
-
-
-def plotThirdSet():
-    a = 1
-    B = 30
-    N = 10
-    y = 3
-
-    plt.figure(3)
-    plotBetaPosteriorAndLaplaceApproximation(a, B, N, y)
 
 
 def plotBetaPosteriorAndLaplaceApproximation(a, B, N, y):
@@ -60,12 +28,7 @@ def plotBetaPosteriorAndLaplaceApproximation(a, B, N, y):
     plt.legend(loc='upper left')
 
 
-
-
-
-
-
-plotFirstSet()
-plotSecondSet()
-plotThirdSet()
+plotBetaPosteriorAndLaplaceApproximation(a=5, B=5, N=20, y=10)
+plotBetaPosteriorAndLaplaceApproximation(a=3, B=15, N=10, y=3)
+plotBetaPosteriorAndLaplaceApproximation(a=1, B=30, N=10, y=3)
 plt.show()
