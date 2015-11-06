@@ -52,10 +52,12 @@ def plotBetaPosteriorAndLaplaceApproximation(a, B, N, y):
     plt.ylabel("p(r|y)")
 
     betaT = beta.pdf(x, a, B)
-    plt.plot(x, betaT, 'b')
+    plt.plot(x, betaT, 'b', label='beta')
 
     laplaceT = norm.pdf(x, loc=r, scale=math.sqrt(var))
-    plt.plot(x, laplaceT, 'r--')
+    plt.plot(x, laplaceT, 'r--', label='laplace')
+
+    plt.legend(loc='upper left')
 
 
 
