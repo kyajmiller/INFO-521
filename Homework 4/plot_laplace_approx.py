@@ -13,6 +13,7 @@ def plotFirstSet():
     N = 20
     y = 10
 
+    plt.figure(1)
     plotBetaPosteriorAndLaplaceApproximation(a, B, N, y)
 
 
@@ -21,6 +22,8 @@ def plotSecondSet():
     B = 15
     N = 10
     y = 3
+
+    plt.figure(2)
 
     plotBetaPosteriorAndLaplaceApproximation(a, B, N, y)
 
@@ -31,6 +34,7 @@ def plotThirdSet():
     N = 10
     y = 3
 
+    plt.figure(3)
     plotBetaPosteriorAndLaplaceApproximation(a, B, N, y)
 
 
@@ -43,12 +47,14 @@ def plotBetaPosteriorAndLaplaceApproximation(a, B, N, y):
     print(r)
     print(var)
 
+    plt.title("True Beta Posterior & Laplace Approximation (a=%s, B=%s, N=%s, y=%s)" % (a, B, N, y))
+
     betaT = beta.pdf(x, a, B)
     plt.plot(x, betaT, 'b')
 
     normT = norm.pdf(x, loc=r, scale=math.sqrt(var))
     plt.plot(x, normT, 'r--')
-    plt.show()
+
 
 
 
@@ -58,3 +64,4 @@ def plotBetaPosteriorAndLaplaceApproximation(a, B, N, y):
 plotFirstSet()
 plotSecondSet()
 plotThirdSet()
+plt.show()
