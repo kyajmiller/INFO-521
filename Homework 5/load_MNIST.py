@@ -25,7 +25,6 @@ def load_MNIST_images(filename):
         num_rows = _read32(f)
         num_cols = _read32(f)
 
-        f = 'train-images.idx3-ubyte'
         images = np.fromfile(f, dtype=np.ubyte)
 
         images = images.reshape((num_images, num_rows * num_cols)).transpose()
