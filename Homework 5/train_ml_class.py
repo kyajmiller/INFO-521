@@ -35,7 +35,7 @@ debug = False
 
 # Loading Sample Images
 # Loading 10K images from MNIST database
-images = load_MNIST.load_MNIST_images('mnist/train-images-idx3-ubyte')
+images = load_MNIST.load_MNIST_images('train-images.idx3-ubyte')
 patches = images[:, 0:10000]
 patches = patches[:, 1:200]
 display_network.display_network(patches[:, 0:100])
