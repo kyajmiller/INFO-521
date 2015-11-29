@@ -1,6 +1,7 @@
 # This is a set of utilities to run the NN excersis in ISTA 421, Introduction to ML
 # By Leon F. Palafox, December, 2014
 
+from __future__ import division
 import numpy as np
 import math
 
