@@ -39,6 +39,13 @@ def sparse_autoencoder_cost(theta, visible_size, hidden_size,
     # follows the notation convention of the lecture notes.
 
     ### YOUR CODE HERE ###
+    w1EndPoint = hidden_size * visible_size
+    w2EndPoint = w1EndPoint * 2
+    b1EndPoint = w2EndPoint + hidden_size
+    w1 = theta[:w1EndPoint]
+    w2 = theta[w1EndPoint:w2EndPoint]
+    b1 = theta[w2EndPoint:b1EndPoint]
+    b2 = theta[b1EndPoint:]
 
     return cost, grad
 
