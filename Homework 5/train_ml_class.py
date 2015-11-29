@@ -38,7 +38,12 @@ debug = False
 images = load_MNIST.load_MNIST_images('train-images.idx3-ubyte')
 patches = images[:, 0:10000]
 patches = patches[:, 1:200]
-display_network.display_network(patches[:, 0:100])
+# display 10
+display_network.display_network(patches[:, 0:10], 'weights10.png')
+# display 50
+display_network.display_network(patches[:, 0:50], 'weights50.png')
+# display 100
+display_network.display_network(patches[:, 0:100], 'weights100.png')
 
 #####
 # Stop execution here...
