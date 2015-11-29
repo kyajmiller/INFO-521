@@ -64,7 +64,7 @@ def sparse_autoencoder_cost(theta, visible_size, hidden_size,
     a3 = sigmoid(z3)
 
     y = what
-    J = np.sum(0.5 * np.power((y - a3), 2))
+    J = (1 / 2) * np.sum(np.power((y - a3), 2))
     # return cost, grad
 
 
