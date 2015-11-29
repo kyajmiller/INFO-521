@@ -65,7 +65,7 @@ def sparse_autoencoder_cost(theta, visible_size, hidden_size,
     outputLayer = a3
 
     difference = outputLayer - data
-    J = (1 / 2) * np.sum(np.power(difference, 2)) / data.shape[1]
+    J = (1 / 2) * np.sum(np.power((a3 - data), 2)) / data.shape[1]
     '''
     yHat = a3
 
