@@ -38,8 +38,8 @@ def sparse_autoencoder_cost(theta, visible_size, hidden_size,
     # follows the notation convention of the lecture notes.
 
     ### YOUR CODE HERE ###
-    x = data
-    y = what
+    # x = data
+    # y = what
 
     w1EndPoint = hidden_size * visible_size
     w2EndPoint = w1EndPoint * 2
@@ -50,7 +50,7 @@ def sparse_autoencoder_cost(theta, visible_size, hidden_size,
     b1 = theta[w2EndPoint:b1EndPoint]
     b2 = theta[b1EndPoint:]
 
-    z2 = np.dot(w1, x)
+    z2 = np.dot(w1, data)
     b1ShapedLikez2 = np.reshape([b1] * z2.shape[1], (hidden_size, z2.shape[1]))
     z2 = z2 + b1ShapedLikez2
 
@@ -61,6 +61,11 @@ def sparse_autoencoder_cost(theta, visible_size, hidden_size,
     z3 = z3 + b2ShapedLikez3
 
     a3 = sigmoid(z3)
+    hiddenLayer = a2
+    outputLayer = a3
+
+    difference = outputLayer - data
+    '''
     yHat = a3
 
     J = (1 / 2) * np.sum(np.power((y - a3), 2))
@@ -71,7 +76,7 @@ def sparse_autoencoder_cost(theta, visible_size, hidden_size,
 
     delta2 = np.dot(delta3, np.transpose(w2)) * sigmoid_prime(z2)
     dJdw1 = np.dot(np.transpose(x), delta2)
-
+    '''
     # return cost, grad
 
 
