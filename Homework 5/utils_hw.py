@@ -42,12 +42,21 @@ def sparse_autoencoder_cost(theta, visible_size, hidden_size,
     w1EndPoint = hidden_size * visible_size
     w2EndPoint = w1EndPoint * 2
     b1EndPoint = w2EndPoint + hidden_size
+
     w1 = theta[:w1EndPoint]
+    w1 = np.reshape(w1, (hidden_size, visible_size))
     w2 = theta[w1EndPoint:w2EndPoint]
+    w2 = np.reshape(w2, (visible_size, hidden_size))
     b1 = theta[w2EndPoint:b1EndPoint]
     b2 = theta[b1EndPoint:]
 
-    return cost, grad
+    z2 = np.dot(w1, data)
+    a2 = sigmoid(z2)
+    z3 = np.dot(w2, a2)
+    a3 = sigmoid(z3)
+
+    print a3
+    # return cost, grad
 
 
 # visible_size: the number of input units (probably 64)
