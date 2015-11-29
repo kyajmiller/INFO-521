@@ -38,6 +38,13 @@ debug = False
 images = load_MNIST.load_MNIST_images('train-images.idx3-ubyte')
 patches = images[:, 0:10000]
 patches = patches[:, 1:200]
+display_network.display_network(patches[:, 0:100])
+
+# Now you will use the display network function to display different sets if the MNIST dataset
+# The display is saved in the directory under the name weigths.
+# Display 10, 50 and 100 datasets
+
+### YOUR CODE HERE ###
 # display 10
 display_network.display_network(patches[:, 0:10], 'weights10.png')
 # display 50
@@ -51,13 +58,6 @@ sys.exit()
 # Move the above line to different parts of the assignment
 #   as you implement more of the functionality.
 #####
-
-
-# Now you will use the display network function to display different sets if the MNIST dataset
-# The display is saved in the directory under the name weigths.
-# Display 10, 50 and 100 datasets
-
-### YOUR CODE HERE ###
 
 # Obtain random parameters theta
 # You need to implement utils_hw.initialize in utils_hw.py
