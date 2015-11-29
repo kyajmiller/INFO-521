@@ -16,6 +16,12 @@ def initialize(hidden_size, visible_size):
     # choose weights uniformly from the interval [-r, r] following what we saw in class
 
     ### YOUR CODE HERE ###
+    numWeightsVisibleToHidden = hidden_size * visible_size
+    numWeightsHiddenToOutput = numWeightsVisibleToHidden
+    numB1BiasTerms = hidden_size
+    numB2BiasTerms = visible_size
+
+    numTotalParameters = numWeightsVisibleToHidden + numWeightsHiddenToOutput + numB1BiasTerms + numB2BiasTerms
 
     return theta
 
