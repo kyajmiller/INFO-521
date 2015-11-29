@@ -2,6 +2,7 @@
 # By Leon F. Palafox, December, 2014
 
 import numpy as np
+import math
 
 
 def sigmoid(x):
@@ -16,12 +17,17 @@ def initialize(hidden_size, visible_size):
     # choose weights uniformly from the interval [-r, r] following what we saw in class
 
     ### YOUR CODE HERE ###
-    numWeightsVisibleToHidden = hidden_size * visible_size
-    numWeightsHiddenToOutput = numWeightsVisibleToHidden
-    numB1BiasTerms = hidden_size
-    numB2BiasTerms = visible_size
+    r = math.sqrt(6 / (hidden_size + visible_size + 1))
+    w1 = np.random.rand(hidden_size, visible_size) * 2 * r - r
+    w2 = np.random.rand(visible_size, hidden_size) * 2 * r - r
 
-    numTotalParameters = numWeightsVisibleToHidden + numWeightsHiddenToOutput + numB1BiasTerms + numB2BiasTerms
+    b1 = np.zeros(hidden_size)
+    b2 = np.zeros(visible_size)
+
+    arraySize = (2 * (hidden_size * visible_size)) + hidden_size + visible_size
+
+    theta = np.concatenate((w1, w2, b1, b2))
+    theta = np.reshape(theta, (1, arraySize))
 
     return theta
 
