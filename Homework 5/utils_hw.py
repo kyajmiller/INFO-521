@@ -19,15 +19,15 @@ def initialize(hidden_size, visible_size):
     ### YOUR CODE HERE ###
     r = math.sqrt(6 / (hidden_size + visible_size + 1))
     w1 = np.random.rand(hidden_size, visible_size) * 2 * r - r
+    w1 = np.reshape(w1, (1, hidden_size * visible_size))[0]
+
     w2 = np.random.rand(visible_size, hidden_size) * 2 * r - r
+    w2 = np.reshape(w2, (1, hidden_size * visible_size))[0]
 
     b1 = np.zeros(hidden_size)
     b2 = np.zeros(visible_size)
 
-    arraySize = (2 * (hidden_size * visible_size)) + hidden_size + visible_size
-
     theta = np.concatenate((w1, w2, b1, b2))
-    theta = np.reshape(theta, (1, arraySize))
 
     return theta
 
