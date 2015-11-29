@@ -70,11 +70,6 @@ def sparse_autoencoder_cost(theta, visible_size, hidden_size,
     J = (1 / 2) * np.sum(np.power((y - a3), 2))
 
     # do gradients now
-    w1gradient = np.zeros(w1)
-    w2gradient = np.zeros(w2)
-    b1gradient = np.zeros(b1)
-    b2gradient = np.zeros(b2)
-
     delta3 = np.multiply(-(y - yHat), sigmoid_prime(z3))
     dJdw2 = np.dot(np.transpose(a2), delta3)
 
