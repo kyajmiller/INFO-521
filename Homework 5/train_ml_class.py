@@ -52,16 +52,16 @@ display_network.display_network(patches[:, 0:50], 'weights50.png')
 # display 100
 display_network.display_network(patches[:, 0:100], 'weights100.png')
 
+# Obtain random parameters theta
+# You need to implement utils_hw.initialize in utils_hw.py
+theta = utils_hw.initialize(hidden_size, visible_size)
+
 #####
 # Stop execution here...
 sys.exit()
 # Move the above line to different parts of the assignment
 #   as you implement more of the functionality.
 #####
-
-# Obtain random parameters theta
-# You need to implement utils_hw.initialize in utils_hw.py
-theta = utils_hw.initialize(hidden_size, visible_size)
 
 # ======================================================================
 # STEP 2: Implement sparseAutoencoderCost
