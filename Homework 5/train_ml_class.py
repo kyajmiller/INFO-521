@@ -56,13 +56,6 @@ display_network.display_network(patches[:, 0:100], 'weights100.png')
 # You need to implement utils_hw.initialize in utils_hw.py
 theta = utils_hw.initialize(hidden_size, visible_size)
 
-#####
-# Stop execution here...
-sys.exit()
-# Move the above line to different parts of the assignment
-#   as you implement more of the functionality.
-#####
-
 # ======================================================================
 # STEP 2: Implement sparseAutoencoderCost
 #
@@ -91,6 +84,13 @@ sys.exit()
                                                 hidden_size, lambda_,
                                                 patches)
 print cost, grad
+
+#####
+# Stop execution here...
+sys.exit()
+# Move the above line to different parts of the assignment
+#   as you implement more of the functionality.
+#####
 
 # ======================================================================
 # STEP 3: Gradient Checking
