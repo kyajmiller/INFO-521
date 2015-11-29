@@ -51,8 +51,15 @@ def sparse_autoencoder_cost(theta, visible_size, hidden_size,
     b2 = theta[b1EndPoint:]
 
     z2 = np.dot(w1, data)
+    b1 = np.reshape([b1] * z2.shape[1], (hidden_size, z2.shape[1]))
+    z2 = z2 + b1
+
     a2 = sigmoid(z2)
+
     z3 = np.dot(w2, a2)
+    b2 = np.reshape([b2] * z3.shape[1], (visible_size, z3.shape[1]))
+    z3 = z3 + b2
+
     a3 = sigmoid(z3)
 
     print a3
