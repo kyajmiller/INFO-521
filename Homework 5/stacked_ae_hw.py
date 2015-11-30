@@ -24,8 +24,10 @@ lambda_ = 3e-3  # weight decay parameter
 
 train_images = load_MNIST.load_MNIST_images('mnist/train-images-idx3-ubyte')
 train_labels = load_MNIST.load_MNIST_labels('mnist/train-labels-idx1-ubyte')
-train_images = train_images[:, 0:10]
-train_labels = train_labels[0:10]
+# train_images = train_images[:, 0:10]
+# train_labels = train_labels[0:10]
+train_images = train_images[:, 10:20]
+train_labels = train_labels[10:20]
 
 # ======================================================================
 # STEP 2: Train the first sparse autoencoder
