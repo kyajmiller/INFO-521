@@ -60,8 +60,11 @@ def sparse_autoencoder_cost(theta, visible_size, hidden_size,
     weightDecay = (lambda_ / 2) * (np.sum(np.power(w1, 2)) + np.sum(np.power(w2, 2)))
     cost = JsumOfSquaredError + weightDecay
 
-    delta_a3 = np.multiply((a3 - data), sigmoid_prime(z3))
+    delta_a3 = np.multiply(-(data - a3), sigmoid_prime(z3))
     delta_a2 = np.multiply(np.dot(np.transpose(w2), delta_a3), sigmoid_prime(z2))
+
+    w1_gradient = np.multiply((np.dot(delta_a2, np.transpose(data)) / MNumTrainingExamples + lambda_), w1)
+
 
     grad = gradient.compute_gradient(w1, w2, data, a2, delta_a3, delta_a2)
 
