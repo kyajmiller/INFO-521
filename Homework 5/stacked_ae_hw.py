@@ -24,10 +24,10 @@ lambda_ = 3e-3  # weight decay parameter
 
 train_images = load_MNIST.load_MNIST_images('train-images.idx3-ubyte')
 train_labels = load_MNIST.load_MNIST_labels('train-labels.idx1-ubyte')
-# train_images = train_images[:, 0:10]
-# train_labels = train_labels[0:10]
-train_images = train_images[:, 10:20]
-train_labels = train_labels[10:20]
+train_images = train_images[:, 0:10]
+train_labels = train_labels[0:10]
+#train_images = train_images[:, 10:20]
+#train_labels = train_labels[10:20]
 
 # ======================================================================
 # STEP 2: Train the first sparse autoencoder
@@ -118,8 +118,8 @@ print result
 # ======================================================================
 # STEP 6: Test
 
-test_images = load_MNIST.load_MNIST_images('mnist/t10k-images-idx3-ubyte')
-test_labels = load_MNIST.load_MNIST_labels('mnist/t10k-labels-idx1-ubyte')
+test_images = load_MNIST.load_MNIST_images('t10k-images.idx3-ubyte')
+test_labels = load_MNIST.load_MNIST_labels('t10k-labels.idx1-ubyte')
 
 # Two auto encoders without fine tuning
 pred = stacked_autoencoder.stacked_autoencoder_predict(stacked_autoencoder_theta, input_size, hidden_size_L2,
