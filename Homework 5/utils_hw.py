@@ -39,17 +39,11 @@ def sparse_autoencoder_cost(theta, visible_size, hidden_size,
     # follows the notation convention of the lecture notes.
 
     ### YOUR CODE HERE ###
-    # x = data
-    # y = what
 
-    w1EndPoint = hidden_size * visible_size
-    w2EndPoint = w1EndPoint * 2
-    b1EndPoint = w2EndPoint + hidden_size
-
-    w1 = theta[:w1EndPoint].reshape(hidden_size, visible_size)
-    w2 = theta[w1EndPoint:w2EndPoint].reshape(visible_size, hidden_size)
-    b1 = theta[w2EndPoint:b1EndPoint]
-    b2 = theta[b1EndPoint:]
+    w1 = theta[:hidden_size*visible_size].reshape(hidden_size, visible_size)
+    w2 = theta[hidden_size*visible_size:(hidden_size*visible_size)*2].reshape(visible_size, hidden_size)
+    b1 = theta[(hidden_size*visible_size)*2:((hidden_size*visible_size)*2)+hidden_size]
+    b2 = theta[((hidden_size*visible_size)*2)+hidden_size:]
 
     z2 = np.dot(w1, data)
     b1ShapedLikez2 = np.reshape([b1] * z2.shape[1], (hidden_size, z2.shape[1]))
