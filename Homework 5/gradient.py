@@ -24,23 +24,14 @@ def simple_quadratic_function(x):
 # function value (the activation of the NN "neuron") at theta.
 # The return value, gradient, should be a numpy array of length theta,
 # holding a floating value representing the gradient for each theta parameter
-def compute_gradient(theta, hidden_size, visible_size, data, a2, delta_a3, delta_a2):
+def compute_gradient(w1, w2, data, a2, delta_a3, delta_a2):
     # I decided to change the arguments of this function because I really don't see the need for having a
     # separate function for this at all. In order to get what I need to calculate the gradient from just the theta,
     # I'd literally end up doing the same functions as in utils_hw.sparse_autoencoder_cost.
-    # This function now takes arguments of theta, hidden_size, visible_size, data, a2, delta3, delta2
+    # This function now takes arguments of w1, w2, data, a2, delta3, delta2
     epsilon = 0.0001
 
     ### YOUR CODE HERE ###
-    w1EndPoint = hidden_size * visible_size
-    w2EndPoint = w1EndPoint * 2
-    b1EndPoint = w2EndPoint + hidden_size
-
-    w1 = theta[:w1EndPoint].reshape(hidden_size, visible_size)
-    w2 = theta[w1EndPoint:w2EndPoint].reshape(visible_size, hidden_size)
-    b1 = theta[w2EndPoint:b1EndPoint]
-    b2 = theta[b1EndPoint:]
-
     w1_gradient = np.dot(delta_a2, np.transpose(data))
     w1_gradient = w1_gradient / data.shape[1] + epsilon * w1
 
