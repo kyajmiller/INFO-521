@@ -29,6 +29,14 @@ def compute_gradient(J, theta):
     gradient = np.zeros(theta.shape)
 
     ### YOUR CODE HERE ###
+    numThetaRows = theta.shape[0]
+    for i in(range(numThetaRows)):
+        thetaPlusEpsilon = np.array(theta, dtype=np.float64)
+        thetaPlusEpsilon[i] = theta[i] + epsilon
+        thetaMinusEpsilon = np.array(theta, dtype=np.float64)
+        thetaMinusEpsilon[i] = theta[i] - epsilon
+
+        gradient[i] = (J(thetaPlusEpsilon)[0] - J(thetaMinusEpsilon)[0]) / (2 * epsilon)
 
     return gradient
 
