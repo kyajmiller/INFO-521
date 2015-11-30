@@ -24,7 +24,7 @@ hidden_size = 25
 lambda_ = 0.0001
 
 # debug (set to True in Ex 3)
-debug = False
+debug = True
 
 # ======================================================================
 # Exercise 1: Load MNIST
@@ -96,8 +96,7 @@ print cost, grad
 # simple function.  After you have implemented gradient.compute_gradient,
 # run the following:
 
-# commented out the debug section since I've changed how compute_gradient works.
-'''
+
 if debug:
     gradient.check_gradient()
 
@@ -116,7 +115,13 @@ if debug:
     diff = np.linalg.norm(num_grad - grad) / np.linalg.norm(num_grad + grad)
     print diff
     print "Norm of the difference between numerical and analytical num_grad (should be < 1e-9)\n\n"
-'''
+
+#####
+# Stop execution here...
+sys.exit()
+# Move the above line to different parts of the assignment
+#   as you implement more of the functionality.
+#####
 
 # ======================================================================
 # STEP 4: After verifying that your implementation of
@@ -140,9 +145,4 @@ print result
 W1 = opt_theta[0:hidden_size * visible_size].reshape(hidden_size, visible_size).transpose()
 display_network.display_network(W1)
 
-#####
-# Stop execution here...
-sys.exit()
-# Move the above line to different parts of the assignment
-#   as you implement more of the functionality.
-#####
+
