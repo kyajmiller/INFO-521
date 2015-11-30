@@ -85,13 +85,6 @@ theta = utils_hw.initialize(hidden_size, visible_size)
                                                 patches)
 print cost, grad
 
-#####
-# Stop execution here...
-sys.exit()
-# Move the above line to different parts of the assignment
-#   as you implement more of the functionality.
-#####
-
 # ======================================================================
 # STEP 3: Gradient Checking
 #
@@ -103,7 +96,8 @@ sys.exit()
 # simple function.  After you have implemented gradient.compute_gradient,
 # run the following:
 
-
+# commented out the debug section since I've changed how compute_gradient works.
+'''
 if debug:
     gradient.check_gradient()
 
@@ -122,6 +116,13 @@ if debug:
     diff = np.linalg.norm(num_grad - grad) / np.linalg.norm(num_grad + grad)
     print diff
     print "Norm of the difference between numerical and analytical num_grad (should be < 1e-9)\n\n"
+'''
+#####
+# Stop execution here...
+sys.exit()
+# Move the above line to different parts of the assignment
+#   as you implement more of the functionality.
+#####
 
 # ======================================================================
 # STEP 4: After verifying that your implementation of
