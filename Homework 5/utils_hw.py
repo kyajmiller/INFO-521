@@ -63,10 +63,12 @@ def sparse_autoencoder_cost(theta, visible_size, hidden_size,
     delta_a3 = np.multiply(-(data - a3), sigmoid_prime(z3))
     delta_a2 = np.multiply(np.dot(np.transpose(w2), delta_a3), sigmoid_prime(z2))
 
-    w1_gradient = np.multiply((np.dot(delta_a2, np.transpose(data)) / MNumTrainingExamples + lambda_), w1)
+    w1_gradient = (np.multiply((np.dot(delta_a2, np.transpose(data)) / MNumTrainingExamples + lambda_), w1)).flatten()
+    w2_gradient = (np.multiply((np.dot(delta_a3, np.transpose(a2)) / MNumTrainingExamples + lambda_), w2)).flatten()
+    b1_gradient = (np.sum(delta_a2, axis=1) / MNumTrainingExamples).flatten()
+    b2_gradient = (np.sum(delta_a3, axis=1) / MNumTrainingExamples).flatten()
 
-
-    grad = gradient.compute_gradient(w1, w2, data, a2, delta_a3, delta_a2)
+    grad = np.concatenate((w1_gradient, w2_gradient, b1_gradient, b2_gradient))
 
     return cost, grad
 
