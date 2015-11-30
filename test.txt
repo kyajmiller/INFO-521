@@ -1,1 +1,6 @@
 test this push to bitbucket
+
+Åmì
+
+Before fine-tuning accuracy: 11.35%
+After fine-tuning accuracy: 62.86%
