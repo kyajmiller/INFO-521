@@ -62,33 +62,18 @@ def sparse_autoencoder_cost(theta, visible_size, hidden_size,
     z3 = z3 + b2ShapedLikez3
 
     a3 = sigmoid(z3)
-    hiddenLayer = a2
-    outputLayer = a3
 
-    difference = outputLayer - data
     JsumOfSquaredError = (1 / 2) * np.sum(np.power((a3 - data), 2)) / data.shape[1]
 
     weightDecay = (lambda_ / 2) * (np.sum(np.multiply(w1, w1)) + np.sum(np.multiply(w2, w2)))
     cost = JsumOfSquaredError + weightDecay
 
-    delta_a3 = np.multiply(difference, sigmoid_prime(z3))
+    delta_a3 = np.multiply((a3 - data), sigmoid_prime(z3))
     delta_a2 = np.multiply(np.dot(np.transpose(w2), delta_a3), sigmoid_prime(z2))
 
-    # grad = gradient.compute_gradient(theta, data, a2, delta3, delta2)
+    grad = gradient.compute_gradient(theta, hidden_size, visible_size, data, a2, delta_a3, delta_a2)
 
-    '''
-    yHat = a3
-
-    J = (1 / 2) * np.sum(np.power((y - a3), 2))
-
-    # do gradients now
-    delta3 = np.multiply(-(y - yHat), sigmoid_prime(z3))
-    dJdw2 = np.dot(np.transpose(a2), delta3)
-
-    delta2 = np.dot(delta3, np.transpose(w2)) * sigmoid_prime(z2)
-    dJdw1 = np.dot(np.transpose(x), delta2)
-    '''
-    # return cost, grad
+    return cost, grad
 
 
 # visible_size: the number of input units (probably 64)
