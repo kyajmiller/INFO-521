@@ -57,7 +57,7 @@ def sparse_autoencoder_cost(theta, visible_size, hidden_size,
 
     JsumOfSquaredError = (1 / 2) * np.sum(np.power((a3 - data), 2)) / data.shape[1]
 
-    weightDecay = (lambda_ / 2) * (np.sum(np.multiply(w1, w1)) + np.sum(np.multiply(w2, w2)))
+    weightDecay = (lambda_ / 2) * (np.sum(np.power(w1, 2)) + np.sum(np.power(w2, 2)))
     cost = JsumOfSquaredError + weightDecay
 
     delta_a3 = np.multiply((a3 - data), sigmoid_prime(z3))
