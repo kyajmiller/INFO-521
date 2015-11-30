@@ -117,12 +117,6 @@ if debug:
     print diff
     print "Norm of the difference between numerical and analytical num_grad (should be < 1e-9)\n\n"
 '''
-#####
-# Stop execution here...
-sys.exit()
-# Move the above line to different parts of the assignment
-#   as you implement more of the functionality.
-#####
 
 # ======================================================================
 # STEP 4: After verifying that your implementation of
@@ -145,3 +139,10 @@ print result
 
 W1 = opt_theta[0:hidden_size * visible_size].reshape(hidden_size, visible_size).transpose()
 display_network.display_network(W1)
+
+#####
+# Stop execution here...
+sys.exit()
+# Move the above line to different parts of the assignment
+#   as you implement more of the functionality.
+#####
