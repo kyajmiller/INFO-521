@@ -4,6 +4,7 @@
 from __future__ import division
 import numpy as np
 import math
+import gradient
 
 
 def sigmoid(x):
@@ -69,6 +70,11 @@ def sparse_autoencoder_cost(theta, visible_size, hidden_size,
 
     weightDecay = (lambda_ / 2) * (np.sum(np.multiply(w1, w1)) + np.sum(np.multiply(w2, w2)))
     cost = JsumOfSquaredError + weightDecay
+
+    delta_a3 = np.multiply(difference, np.multiply(a3, -a3))
+    delta_a2 = np.multiply(np.dot(np.transpose(w2), delta_a3), np.multiply(a2, -a2))
+
+    # grad = gradient.compute_gradient(theta, data, a2, delta3, delta2)
 
     '''
     yHat = a3
