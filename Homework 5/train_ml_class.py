@@ -131,17 +131,18 @@ result = scipy.optimize.minimize(J, theta, method='L-BFGS-B', jac=True, options=
 opt_theta = result.x
 
 print result
-#####
-# Stop execution here...
-sys.exit()
-# Move the above line to different parts of the assignment
-#   as you implement more of the functionality.
-#####
+
 
 # ======================================================================
 # STEP 5: Visualization
 
 W1 = opt_theta[0:hidden_size * visible_size].reshape(hidden_size, visible_size).transpose()
 display_network.display_network(W1)
+#####
+# Stop execution here...
+sys.exit()
+# Move the above line to different parts of the assignment
+#   as you implement more of the functionality.
+#####
 
 
