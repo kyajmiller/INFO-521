@@ -1,10 +1,4 @@
 import numpy as np
-import sys
-
-
-def _read32(bytestream):
-    dt = np.dtype(np.uint32).newbyteorder('>')
-    return np.frombuffer(bytestream.read(4), dtype=dt)
 
 
 def load_MNIST_images(filename):
@@ -14,25 +8,20 @@ def load_MNIST_images(filename):
     :param filename: input data file
     """
     with open(filename, "rb") as f:
-        magic = _read32(f)
+        magic = np.fromfile(f, dtype=np.dtype('>i4'), count=1)
 
-        if magic != 2051:
-            raise ValueError(
-                'Invalid magic number %d in MNIST image file: %s' %
-                (magic, filename))
-
-        num_images = _read32(f)
-        num_rows = _read32(f)
-        num_cols = _read32(f)
+        num_images = np.fromfile(f, dtype=np.dtype('>i4'), count=1)
+        num_rows = np.fromfile(f, dtype=np.dtype('>i4'), count=1)
+        num_cols = np.fromfile(f, dtype=np.dtype('>i4'), count=1)
 
         images = np.fromfile(f, dtype=np.ubyte)
-
+        #images.resize(len (images)-1)
         images = images.reshape((num_images, num_rows * num_cols)).transpose()
         images = images.astype(np.float64) / 255
 
         f.close()
 
-    return images
+        return images
 
 
 def load_MNIST_labels(filename):
@@ -43,8 +32,12 @@ def load_MNIST_labels(filename):
     :param filename: input file with labels
     """
     with open(filename, 'rb') as f:
+        magic = np.fromfile(f, dtype=np.dtype('>i4'), count=1)
+
+        num_labels = np.fromfile(f, dtype=np.dtype('>i4'), count=1)
+
         labels = np.fromfile(f, dtype=np.ubyte)
 
         f.close()
 
-    return labels
+        return labels
