@@ -137,7 +137,7 @@ print result
 # STEP 5: Visualization
 
 W1 = opt_theta[0:hidden_size * visible_size].reshape(hidden_size, visible_size).transpose()
-display_network.display_network(W1)
+display_network.display_network(W1, 'hiddenUnits25Default.png')
 #####
 # Stop execution here...
 sys.exit()
