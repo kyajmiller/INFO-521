@@ -24,7 +24,7 @@ hidden_size = 25
 lambda_ = 0.0001
 
 # debug (set to True in Ex 3)
-debug = True
+debug = False
 
 # ======================================================================
 # Exercise 1: Load MNIST
@@ -116,13 +116,6 @@ if debug:
     print diff
     print "Norm of the difference between numerical and analytical num_grad (should be < 1e-9)\n\n"
 
-#####
-# Stop execution here...
-sys.exit()
-# Move the above line to different parts of the assignment
-#   as you implement more of the functionality.
-#####
-
 # ======================================================================
 # STEP 4: After verifying that your implementation of
 #  sparseAutoencoderCost is correct, You can start training your sparse
@@ -138,6 +131,12 @@ result = scipy.optimize.minimize(J, theta, method='L-BFGS-B', jac=True, options=
 opt_theta = result.x
 
 print result
+#####
+# Stop execution here...
+sys.exit()
+# Move the above line to different parts of the assignment
+#   as you implement more of the functionality.
+#####
 
 # ======================================================================
 # STEP 5: Visualization
