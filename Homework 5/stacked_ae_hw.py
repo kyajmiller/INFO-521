@@ -22,8 +22,8 @@ lambda_ = 3e-3  # weight decay parameter
 #
 #  This loads our training data from the MNIST database files.
 
-train_images = load_MNIST.load_MNIST_images('mnist/train-images-idx3-ubyte')
-train_labels = load_MNIST.load_MNIST_labels('mnist/train-labels-idx1-ubyte')
+train_images = load_MNIST.load_MNIST_images('train-images.idx3-ubyte')
+train_labels = load_MNIST.load_MNIST_labels('train-labels.idx1-ubyte')
 # train_images = train_images[:, 0:10]
 # train_labels = train_labels[0:10]
 train_images = train_images[:, 10:20]
