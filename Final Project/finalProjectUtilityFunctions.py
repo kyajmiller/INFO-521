@@ -9,7 +9,9 @@ def makeDataSet(dataLines):
         label = getLabelStatePoliticalAffiliation(state)
         features = []
 
-        unigrams = getUnigramsFilterOutBadTokens()
+        unigrams = getUnigramsFilterOutBadTokens(tweet)
+        bigrams = getBigrams(unigrams)
+
 
 
 def getLabelStatePoliticalAffiliation(state):
@@ -62,8 +64,8 @@ def getBigrams(unigrams):
     return bigrams
 
 
-def checkLexicons(tokens):
-    # liberal lexicon vs conservative lexicon
+def getLiberalCount(unigrams, bigrams):
+    # liberal lexicon
     liberalFoods = ['curry', 'bistro', 'fresh', 'fruit', 'strawberry', 'crunchy', 'thin', 'coconut', 'lamb', 'gnocchi',
                 'fusili', 'radiatore', 'rice', 'wine', 'beer', 'diet', 'tap', 'fusion', 'vegetarian', 'foodie',
                 'organic', 'seafood', 'toast', 'bagel', 'jamba', 'sbarro', 'chipotle', 'aubonpain', 'qdoba',
@@ -74,6 +76,9 @@ def checkLexicons(tokens):
                 'ontheborder', 'asian']
     liberalFoodsHashtags = ['#' + l for l in liberalFoods]
 
+
+def getConservativeCount(unigrams, bigrams):
+    # conservative lexicon
     conservativeFoods = ['meatloaf', 'potato', 'bean', 'gravy', 'soda', 'mcdonalds', 'steak', 'cooked', 'grape', 'soft',
                 'deep dish', 'burger', 'grill', 'tuna', 'casserole', 'meatloaf', 'linguine', 'rotini', 'spaghetti',
                 'juice', 'chinese', 'cheeseburger', 'bacon', 'applebees', 'schlotzskys', 'chickfila', 'arbys', 'sonic',
