@@ -7,6 +7,8 @@ import math
 
 
 def getDataSets():
+    # opens the input file, shuffles the data, and splits the data into training and testing sets. Calls makeDataSet.
+
     # open input file
     data = open('norm_food_sample_2Oct2013-28Oct2013.txt', 'r')
     allData = data.readlines()
@@ -26,11 +28,15 @@ def getDataSets():
 
 
 def makeDataSet(dataLines):
+    # does all of the data processing to return a list of features with an associated label
+
     dataSet = []
 
     # loop through each line
     for line in dataLines:
         state, tweet = line.split('\t', 1)
+
+        # get the label based on the state
         label = getLabelStatePoliticalAffiliation(state)
         features = []
 
@@ -73,12 +79,14 @@ def getLabelStatePoliticalAffiliation(state):
     if state in liberalStates:
         label = 0
         return label
+    # this absolutely needs to be an else statement instead of elif, or else bad things happen.
     else:
         label = 1
         return label
 
 
 def getUnigramsFilterOutBadTokens(tweet):
+    # split on whitespace
     tokens = tweet.split()
 
     punctuation = ['.', ',', '?', '!', "'", '"', '(', ')', '&', '=', '/', '+', '-', '*']
@@ -96,6 +104,7 @@ def getUnigramsFilterOutBadTokens(tweet):
     noemojis = []
     for token in tokens:
         if token.startswith('#'):
+            # ignore hashtags, doesn't matter if they contain emojis
             tag = re.search('#([A-Za-z]|\d)+', token)
             if tag:
                 noemojis.append(tag.group().lower())
@@ -130,6 +139,7 @@ def getLiberalCount(unigrams, bigrams):
                 'ontheborder', 'asian']
     liberalFoodsHashtags = ['#' + l for l in liberalFoods]
 
+    # loop through unigrams and bigrams, if they match anything in the lexicons, increment the count
     liberalCount = 0
     for unigram in unigrams:
         if unigram.lower() in liberalFoods:
@@ -158,6 +168,7 @@ def getConservativeCount(unigrams, bigrams):
                 'kroger', 'harristeeter', 'harris', 'teeter', 'publix']
     conservativeFoodsHashtags = ['#' + c for c in conservativeFoods]
 
+    # loop through unigrams and bigrams, if they match anything in the lexicons, increment the count
     conservativeCount = 0
     for unigram in unigrams:
         if unigram.lower() in conservativeFoods:
@@ -221,13 +232,16 @@ def getStopWordsList():
 
 
 def makeFeaturesVectors(totalFeaturesList, featuresValueCountsIndexes):
+    # create features vectors
+
+    # initialize weights as zeros
     featuresVectors = numpy.matrix(numpy.zeros((len(totalFeaturesList), featuresValueCountsIndexes.shape[0] + 1)))
 
     # insert bias
     featuresVectors[:, 0] = 1
 
     for totalFeaturesIndex, totalFeaturesData in enumerate(totalFeaturesList):
-        # make regular vector
+        # make regular vector with value counts
         totalFeaturesData = pandas.Series(totalFeaturesData)
         vectorCounts = totalFeaturesData.value_counts()
 
@@ -241,16 +255,16 @@ def makeFeaturesVectors(totalFeaturesList, featuresValueCountsIndexes):
 
 
 def computeTrueFalsePostivesNegatives(gold, predicted, desiredClass=''):
+    # self-explanatory. Gets the stats for the desired class.
+
     truePositive = trueNegative = falsePositive = falseNegative = 0
 
     for goldLabel, predictedLabel in zip(gold, predicted):
-
         if goldLabel == predictedLabel:
             if goldLabel == desiredClass:
                 truePositive += 1
             else:
                 trueNegative += 1
-
         else:
             if goldLabel == desiredClass:
                 falseNegative += 1
@@ -261,6 +275,8 @@ def computeTrueFalsePostivesNegatives(gold, predicted, desiredClass=''):
 
 
 def computeAccuracyPrecisionRecallF1(truePositive, trueNegative, falsePositive, falseNegative):
+    # also self-explanatory.
+
     precision = truePositive / (truePositive + falsePositive)
     recall = truePositive / (truePositive + falseNegative)
     accuracy = (truePositive + trueNegative) / (truePositive + trueNegative + falsePositive + falseNegative)
@@ -270,6 +286,8 @@ def computeAccuracyPrecisionRecallF1(truePositive, trueNegative, falsePositive, 
 
 
 def printAccuracyPrecisionRecallF1(accuracy, precision, recall, f1):
+    # print the stats
+
     print 'Accuracy:\t%.3f' % accuracy
     print 'Precision:\t%.3f' % precision
     print 'Recall:\t\t%.3f' % recall
