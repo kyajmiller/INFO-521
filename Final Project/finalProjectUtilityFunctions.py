@@ -1,4 +1,6 @@
 import re
+import numpy
+import pandas
 
 
 def makeDataSet(dataLines):
@@ -185,3 +187,23 @@ def getStopWordsList():
                      'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2',
                      '3', '4', '5', '6', '7', '8', '9', '0']
     return stopwordsList
+
+
+def makeFeaturesVectors(self, totalFeaturesList, featuresValueCountsIndexes):
+    featuresVectors = numpy.matrix(numpy.zeros((len(totalFeaturesList), featuresValueCountsIndexes.shape[0] + 1)))
+
+    # insert bias
+    featuresVectors[:, 0] = 1
+
+    for totalFeaturesIndex, totalFeaturesData in enumerate(totalFeaturesList):
+        # make regular vector
+        totalFeaturesData = pandas.Series(totalFeaturesData)
+        vectorCounts = totalFeaturesData.value_counts()
+
+        # make features vector
+        for featuresValueCountsIndexesIndex, featuresValueCountsIndexesValue in enumerate(featuresValueCountsIndexes):
+            if featuresValueCountsIndexesValue in vectorCounts.index:
+                featuresVectors[totalFeaturesIndex, featuresValueCountsIndexesIndex + 1] = vectorCounts.ix[
+                    featuresValueCountsIndexesValue]
+
+    return featuresVectors
