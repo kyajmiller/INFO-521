@@ -3,7 +3,7 @@ import numpy
 
 
 class Perceptron(object):
-    def __init__(self, numClasses=2, epochs=100, learningRate=1.5):
+    def __init__(self, numClasses=2, epochs=10, learningRate=1.5):
         self.numClasses = numClasses
         self.epochs = epochs
         self.learningRate = learningRate
