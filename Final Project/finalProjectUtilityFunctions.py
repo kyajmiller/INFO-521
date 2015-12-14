@@ -8,8 +8,8 @@ import math
 
 def getDataSets():
     # open input file
-    data = open('foodTweets.txt', 'r')
-    allData = data.readlines()
+    data = open('norm_food_sample_2Oct2013-28Oct2013.txt', 'r')
+    allData = data.readlines()[:10000]
 
     # shuffle data so get different sets each time
     random.shuffle(allData)
