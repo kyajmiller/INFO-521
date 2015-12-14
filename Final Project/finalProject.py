@@ -6,28 +6,30 @@ import itertools
 
 trainingSet, testingSet = getDataSets()
 
+# create a data frame to hold the predictions
 frame = pandas.DataFrame(columns=['state', 'label', 'features'])
 
 for index, value in enumerate(testingSet):
     frame.loc[index] = [value['state'], value['label'], value['features']]
 
+# get the unique features and their frequencies
 features = pandas.Series(list(itertools.chain(*[t['features'] for t in trainingSet])))
 features = features.value_counts()
 print "Number of Features: %i" % features.size
 
-# filter out features that occur less than a given number of time
-# this is entirely arbitrary, my computer can't handle the feature vectors otherwise
+# filter out features that occur less than a given number of times to prevent memory issues
 threshold = 6
 features = features[features >= threshold]
 print "Number of Features after Filtering: %i" % features.size
 
-# Feature Vectors
+# make features vectors
 print "Building training vectors..."
 trainingVectors = makeFeaturesVectors([t['features'] for t in trainingSet], features.index)
 print "Training vectors complete."
 print "Building testing vectors..."
 testingVectors = makeFeaturesVectors([t['features'] for t in testingSet], features.index)
 print "Testing vectors complete."
+print '\n'
 
 # train my implementaion of the Perceptron
 print "Training my perceptron..."
