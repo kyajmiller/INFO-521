@@ -17,8 +17,8 @@ class Perceptron(object):
         else:
             self.weights = [numpy.transpose(numpy.matrix(numpy.zeros(trainingVectors.shape[1]))) for i in
                             xrange(self.numClasses)]
-            actualWeights = [numpy.transpose(numpy.matrix(numpy.zeros(trainingVectors.shape[1]))) for i in
-                             xrange(self.numClasses)]
+            adjustedWeights = [numpy.transpose(numpy.matrix(numpy.zeros(trainingVectors.shape[1]))) for i in
+                               xrange(self.numClasses)]
             iterations = 0
 
             for i in xrange(self.epochs):
@@ -26,6 +26,20 @@ class Perceptron(object):
                 for j, label in zip(range(trainingVectors.shape[0]), trainingLabels):
                     value = trainingVectors[j, :]
                     prediction = self.predict(value)
+
+                    if prediction != label:
+                        # if the prediction is wrong, adjust the weights accordingly
+                        for k in xrange(self.numClasses):
+                            if k == prediction:
+                                self.weights[k] -= self.learningRate * numpy.transpose(value)
+                            else:
+                                self.weights[k] += self.learningRate * numpy.transpose(value)
+                        errors += 1
+
+                    for l in range(len(adjustedWeights)):
+                        adjustedWeights[l] += self.weights[l]
+
+                    iterations += 1
 
     def predict(self, value):
         prediction = [numpy.dot(value, weight)[0] for weight in self.weights]
