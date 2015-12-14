@@ -10,6 +10,7 @@ class LogisticRegression(object):
         self.testingLabels = testingLabels
         self.n = self.trainingLabels.shape[0]
 
+        self.alpha = 0.1
         self.betas = numpy.zeros(self.trainingVectors.shape[1])
 
     def sigmoid(self, x):
