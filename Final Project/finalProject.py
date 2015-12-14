@@ -15,6 +15,12 @@ features = pandas.Series(list(itertools.chain(*[t['features'] for t in trainingS
 features = features.value_counts()
 print "Number of Features: %i" % features.size
 
+# filter out features that occur less than a given number of time
+# this is entirely arbitrary, my computer can't handle the feature vectors otherwise
+threshold = 6
+features = features[features >= threshold]
+print "Number of Features after Filtering: %i" % features.size
+
 # Feature Vectors
 print "Building Features Vectors..."
 trainingVectors = makeFeaturesVectors([t['features'] for t in trainingSet], features.index)
