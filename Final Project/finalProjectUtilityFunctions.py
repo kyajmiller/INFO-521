@@ -12,6 +12,10 @@ def makeDataSet(dataLines):
         unigrams = getUnigramsFilterOutBadTokens(tweet)
         bigrams = getBigrams(unigrams)
 
+        liberalCount = getLiberalCount(unigrams, bigrams)
+        conservativeCount = getConservativeCount(unigrams, bigrams)
+
+
 
 
 def getLabelStatePoliticalAffiliation(state):
