@@ -32,6 +32,8 @@ def makeDataSet(dataLines):
         label = getLabelStatePoliticalAffiliation(state)
         features = []
 
+        print label
+
         unigrams = getUnigramsFilterOutBadTokens(tweet)
         bigrams = getBigrams(unigrams)
 
@@ -64,9 +66,11 @@ def getLabelStatePoliticalAffiliation(state):
                           'KY', 'TN', 'MS', 'AL', 'WV', 'NC', 'SC', 'GA', 'AK']
 
     if state in liberalStates:
-        return 0
-    elif state in conservativeStates:
-        return 1
+        label = 0
+        return label
+    else:
+        label = 1
+        return label
 
 
 def getUnigramsFilterOutBadTokens(tweet):
