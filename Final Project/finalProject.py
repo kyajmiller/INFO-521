@@ -22,7 +22,6 @@ features = features[features >= threshold]
 print "Number of Features after Filtering: %i" % features.size
 
 # Feature Vectors
-print "Building Features Vectors..."
 print "Building training vectors..."
 trainingVectors = makeFeaturesVectors([t['features'] for t in trainingSet], features.index)
 print "Training vectors complete."
