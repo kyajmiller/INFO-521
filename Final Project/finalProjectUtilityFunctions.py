@@ -32,8 +32,6 @@ def makeDataSet(dataLines):
         label = getLabelStatePoliticalAffiliation(state)
         features = []
 
-        print label
-
         unigrams = getUnigramsFilterOutBadTokens(tweet)
         bigrams = getBigrams(unigrams)
 
