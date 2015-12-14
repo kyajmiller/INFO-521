@@ -256,8 +256,7 @@ def computeAccuracyPrecisionRecallF1(truePositive, trueNegative, falsePositive, 
     precision = truePositive / (truePositive + falsePositive)
     recall = truePositive / (truePositive + falseNegative)
     accuracy = (truePositive + trueNegative) / (truePositive + trueNegative + falsePositive + falseNegative)
-    # f1 = 2 * (precision * recall / (precision + recall))
-    f1 = 0
+    f1 = 2 * (precision * recall / (precision + recall))
 
     return accuracy, precision, recall, f1
 
@@ -266,4 +265,4 @@ def printAccuracyPrecisionRecallF1(accuracy, precision, recall, f1):
     print 'Accuracy:\t%.3f' % accuracy
     print 'Precision:\t%.3f' % precision
     print 'Recall:\t\t%.3f' % recall
-    #print 'F1:\t\t%.3f' % f1
+    print 'F1:\t\t%.3f' % f1
