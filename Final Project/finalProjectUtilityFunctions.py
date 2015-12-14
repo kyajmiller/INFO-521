@@ -88,7 +88,12 @@ def getLiberalCount(unigrams, bigrams):
             liberalCount += 1
 
     for bigram in bigrams:
-        if bigram in liberalFoods
+        if bigram in liberalFoods:
+            liberalCount += 1
+        if bigram in liberalFoodsHashtags:
+            liberalCount += 1
+
+    return liberalCount
 
 
 def getConservativeCount(unigrams, bigrams):
@@ -104,7 +109,19 @@ def getConservativeCount(unigrams, bigrams):
     conservativeFoodsHashtags = ['#' + c for c in conservativeFoods]
 
     conservativeCount = 0
-    for unigram in unigrams
+    for unigram in unigrams:
+        if unigram in conservativeFoods:
+            conservativeCount += 1
+        if unigram in conservativeFoodsHashtags:
+            conservativeCount += 1
+
+    for bigram in bigrams:
+        if bigram in conservativeFoods:
+            conservativeCount += 1
+        if bigram in conservativeFoodsHashtags:
+            conservativeCount += 1
+
+    return conservativeCount
 
 
 def getStopWordsList():
