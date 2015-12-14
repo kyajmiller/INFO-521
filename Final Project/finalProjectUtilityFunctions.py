@@ -1,13 +1,25 @@
 def makeDataSet(dataLines):
+    dataSet = []
+
+    for line in dataLines:
+        state, tweet = line.split('\t', 1)
 
 
-def getStatePoliticalAffiliation(state):
+def getLabelStatePoliticalAffiliation(state):
+    # if state is liberal, label = 0; if conservative, label = 1
     # declare lists of liberal states and conservative states
     liberalStates = ['WA', 'OR', 'CA', 'NV', 'CO', 'NM', 'IA', 'WI', 'MI', 'IL', 'OH', 'VA', 'DC', 'MD', 'DE', 'PA',
                      'NJ', 'NY', 'CT', 'RI', 'MA', 'NH', 'VT', 'ME', 'HI', 'FL']
 
     conservativeStates = ['ID', 'MT', 'WY', 'UT', 'AZ', 'ND', 'SD', 'NE', 'KS', 'OK', 'TX', 'MO', 'AR', 'LA', 'IL',
                           'KY', 'TN', 'MS', 'AL', 'WV', 'NC', 'SC', 'GA', 'AK']
+
+    if state in liberalStates:
+        label = 0
+    elif state in conservativeStates:
+        label = 1
+
+    return label
 
 
 def checkLexicons(tokens):
