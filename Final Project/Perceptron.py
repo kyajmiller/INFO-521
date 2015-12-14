@@ -1,11 +1,8 @@
 from __future__ import division
-import pandas
 import numpy
 
 
-class Perceptron:
-    ''' Implementation of the multinomial perceptron '''
-
+class Perceptron(object):
     def __init__(self, numClasses=3, epochs=10, learningRate=1):
         self.numClasses = numClasses
         self.epochs = epochs
