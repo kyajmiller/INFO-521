@@ -1,0 +1,44 @@
+Number of Features: 276254
+Number of Features after Filtering: 16425
+Building training vectors...
+Training vectors complete.
+Building testing vectors...
+Testing vectors complete.
+Training my perceptron...
+My perceptron trained.
+Predicting results for my Perceptron...
+
+Results for the implemented multinomial perceptron for class 0:
+
+Accuracy:	0.748
+Precision:	0.808
+Recall:		0.860
+F1:			0.833
+
+Results for the implemented multinomial perceptron for class 1:
+
+Accuracy:	0.748
+Precision:	0.539
+Recall:		0.446
+F1:			0.488
+
+
+Training sklearn Perceptron...
+sklearn Perceptron trained.
+Predicting results for sklearn Perceptron...
+
+Results for the sklearn perceptron for class 0:
+
+Accuracy:	0.704
+Precision:	0.804
+Recall:		0.786
+F1:			0.795
+
+Results for the sklearn perceptron for class 1:
+
+Accuracy:	0.704
+Precision:	0.453
+Recall:		0.481
+F1:			0.467
+
+Process finished with exit code 0
