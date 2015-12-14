@@ -28,6 +28,7 @@ class Perceptron(object):
                 errors = 0
 
                 for j, label in zip(range(trainingVectors.shape[0]), trainingLabels):
+                    # make a prediction based on current weights
                     value = trainingVectors[j, :]
                     prediction = self.predict(value)
 
