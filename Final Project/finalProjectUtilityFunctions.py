@@ -207,3 +207,39 @@ def makeFeaturesVectors(self, totalFeaturesList, featuresValueCountsIndexes):
                     featuresValueCountsIndexesValue]
 
     return featuresVectors
+
+
+def computeTrueFalsePostivesNegatives(gold, predicted, desiredClass=''):
+    truePositive = trueNegative = falsePositive = falseNegative = 0
+
+    for goldLabel, predictedLabel in zip(gold, predicted):
+
+        if goldLabel == predictedLabel:
+            if goldLabel == desiredClass:
+                truePositive += 1
+            else:
+                trueNegative += 1
+
+        else:
+            if goldLabel == desiredClass:
+                falseNegative += 1
+            else:
+                falsePositive += 1
+
+    return truePositive, trueNegative, falsePositive, falseNegative
+
+
+def computeAccuracyPrecisionRecallF1(truePositive, trueNegative, falsePositive, falseNegative):
+    precision = truePositive / (truePositive + falsePositive)
+    recall = truePositive / (truePositive + falseNegative)
+    accuracy = (truePositive + trueNegative) / (truePositive + trueNegative + falsePositive + falseNegative)
+    f1 = 2 * (precision * recall / (precision + recall))
+
+    return accuracy, precision, recall, f1
+
+
+def printAccuracyPrecisionRecallF1(accuracy, precision, recall, f1):
+    print 'Accuracy:\t%.3f' % accuracy
+    print 'Precision:\t%.3f' % precision
+    print 'Recall:\t\t%.3f' % recall
+    print 'F1:\t\t%.3f' % f1
