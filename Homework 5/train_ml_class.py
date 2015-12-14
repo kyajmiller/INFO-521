@@ -24,7 +24,7 @@ hidden_size = 25
 lambda_ = 0.0001
 
 # debug (set to True in Ex 3)
-debug = False
+debug = True
 
 # ======================================================================
 # Exercise 1: Load MNIST
