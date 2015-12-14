@@ -39,6 +39,10 @@ def getUnigramsFilterOutBadTokens(tweet):
               not token.startswith('http://') and not token.startswith('@') and not token.startswith(
                   'RT') and token not in punctuation]
 
+    # filter out stopwords
+    stopWordsList = getStopWordsList()
+    tokens = [token for token in tokens if token not in stopWordsList]
+
     # remove emojis
     noemojis = []
     for token in tokens:
@@ -103,7 +107,7 @@ def getConservativeCount(unigrams, bigrams):
     for unigram in unigrams
 
 
-def stopWordsList():
+def getStopWordsList():
     # return a list of stopwords
     stopwordsList = ['a', 'about', 'above', 'across', 'after', 'again', 'against', 'all', 'almost', 'alone',
                      'along', 'already', 'also', 'although', 'always', 'among', 'an', 'and', 'another', 'any',
