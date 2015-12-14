@@ -20,6 +20,11 @@ def makeDataSet(dataLines):
         if conservativeCount > 0:
             features.append("Conservative Count: %i" % conservativeCount)
 
+        for unigram in unigrams:
+            features.append(unigram)
+        for bigram in bigrams:
+            features.append(bigram)
+
 
 
 
