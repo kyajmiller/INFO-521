@@ -1,10 +1,15 @@
+import re
+
+
 def makeDataSet(dataLines):
     dataSet = []
 
     for line in dataLines:
         state, tweet = line.split('\t', 1)
         label = getLabelStatePoliticalAffiliation(state)
+        features = []
 
+        unigrams = getUnigramsFilterOutBadTokens()
 
 
 def getLabelStatePoliticalAffiliation(state):
@@ -20,6 +25,32 @@ def getLabelStatePoliticalAffiliation(state):
         return 0
     elif state in conservativeStates:
         return 1
+
+
+def getUnigramsFilterOutBadTokens(tweet):
+    tokens = tweet.split()
+
+    punctuation = ['.', ',', '?', '!', "'", '"', '(', ')', '&', '=', '/', '+', '-', '*']
+
+    # filter out html, handles, and floating punctuation, RT
+    tokens = [token for token in tokens if
+              not token.startswith('http://') and not token.startswith('@') and not token.startswith(
+                  'RT') and token not in punctuation]
+
+    # remove emojis
+    noemojis = []
+    for token in tokens:
+        if token.startswith('#'):
+            tag = re.search('#([A-Za-z]|\d)+', token)
+            if tag:
+                noemojis.append(tag.group().lower())
+        else:
+            word = re.search(r'([A-Za-z]|\d)+(\'[A-Za-z]+)*', token)
+            if word:
+                noemojis.append(word.group().lower())
+
+    unigrams = noemojis
+    return unigrams
 
 
 def checkLexicons(tokens):
