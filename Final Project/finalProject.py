@@ -1,6 +1,6 @@
-from Perceptron import *
+from Perceptron import Perceptron as MyPerceptron
 from finalProjectUtilityFunctions import *
-from sklearn.linear_model import Perceptron
+from sklearn.linear_model import Perceptron as SkPerceptron
 import pandas
 import itertools
 
@@ -17,5 +17,23 @@ print "Number of Features: %i" % features.size
 
 # Feature Vectors
 print "Building Features Vectors..."
-X_train = makeFeaturesVectors([t['features'] for t in trainingSet], features.index)
-X_test = makeFeaturesVectors([t['features'] for t in testingSet], features.index)
+trainingVectors = makeFeaturesVectors([t['features'] for t in trainingSet], features.index)
+testingVectors = makeFeaturesVectors([t['features'] for t in testingSet], features.index)
+
+# train my implementaion of the Perceptron
+myPerceptron = MyPerceptron(numClasses=2, epochs=100, learningRate=1.5)
+myPerceptron.train(trainingVectors, [t['label'] for t in trainingSet])
+
+# get the predictions for my Perceptron
+frame['myPerceptron'] = pandas.Series(
+    [myPerceptron.predict(testingVectors[i, :]) for i in xrange(testingVectors.shape[0])])
+
+# display results for class 0 - liberal
+print '\nResults for the multinomial perceptron for class 0:\n'
+printAccuracyPrecisionRecallF1(*computeAccuracyPrecisionRecallF1(
+    *computeTrueFalsePostivesNegatives(frame['label'], frame['myPerceptron'], desiredClass=0)))
+
+# display results for class 1 - conservative
+print '\nResults for the multinomial perceptron for class 1:\n'
+printAccuracyPrecisionRecallF1(*computeAccuracyPrecisionRecallF1(
+    *computeTrueFalsePostivesNegatives(frame['label'], frame['myPerceptron'], desiredClass=1)))
