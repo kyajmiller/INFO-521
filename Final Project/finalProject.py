@@ -37,3 +37,18 @@ printAccuracyPrecisionRecallF1(*computeAccuracyPrecisionRecallF1(
 print '\nResults for the multinomial perceptron for class 1:\n'
 printAccuracyPrecisionRecallF1(*computeAccuracyPrecisionRecallF1(
     *computeTrueFalsePostivesNegatives(frame['label'], frame['myPerceptron'], desiredClass=1)))
+
+# now do the same thing, but with the sklearn Perceptron
+skPerceptron = SkPerceptron()
+skPerceptron.fit(trainingVectors, [t['label'] for t in trainingSet])
+frame['skPerceptron'] = skPerceptron.predict(testingVectors)
+
+# display results for class 0 - liberal
+print '\nResults for the multinomial perceptron for class 0:\n'
+printAccuracyPrecisionRecallF1(*computeAccuracyPrecisionRecallF1(
+    *computeTrueFalsePostivesNegatives(frame['label'], frame['skPerceptron'], desiredClass=0)))
+
+# display results for class 1 - conservative
+print '\nResults for the multinomial perceptron for class 1:\n'
+printAccuracyPrecisionRecallF1(*computeAccuracyPrecisionRecallF1(
+    *computeTrueFalsePostivesNegatives(frame['label'], frame['skPerceptron'], desiredClass=1)))
