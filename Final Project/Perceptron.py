@@ -16,8 +16,6 @@ class Perceptron:
 
     def train(self, X, t):
         ''' Learn the weights from the training data '''
-
-        assert self.weights == None, "This perceptron is already trained"
         if self.isTrained:
             print("This perceptron is already trained")
         else:
@@ -57,6 +55,7 @@ class Perceptron:
                 aw[i] /= iterations
 
             self.weights = aw
+            self.isTrained = True
 
     def predict(self, v):
         ''' Multiclass prediction '''
