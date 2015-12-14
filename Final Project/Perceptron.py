@@ -18,43 +18,45 @@ class Perceptron:
         ''' Learn the weights from the training data '''
 
         assert self.weights == None, "This perceptron is already trained"
+        if self.isTrained:
+            print("This perceptron is already trained")
+        else:
+            # initialize the weights
+            # self.w = [lil_matrix(X[0].shape).T for i in xrange(self.classes)]
+            self.weights = [numpy.matrix(numpy.zeros(X.shape[1])).T for i in xrange(self.numClasses)]
+            aw = [numpy.matrix(numpy.zeros(X.shape[1])).T for i in xrange(self.numClasses)]
+            iterations = 0
 
-        # initialize the weights
-        # self.w = [lil_matrix(X[0].shape).T for i in xrange(self.classes)]
-        self.weights = [numpy.matrix(numpy.zeros(X.shape[1])).T for i in xrange(self.numClasses)]
-        aw = [numpy.matrix(numpy.zeros(X.shape[1])).T for i in xrange(self.numClasses)]
-        iterations = 0
+            for i in xrange(self.epochs):
+                errors = 0
 
-        for i in xrange(self.epochs):
-            errors = 0
+                for a, c in zip(range(X.shape[0]), t):
 
-            for a, c in zip(range(X.shape[0]), t):
+                    v = X[a, :]
 
-                v = X[a, :]
+                    p = self.predict(v)
 
-                p = self.predict(v)
+                    if not p == c:  # If the prediction is wrong
+                        for i in xrange(self.numClasses):
+                            if i == p:
+                                self.weights[i] -= self.learningRate * v.T
+                            else:
+                                self.weights[i] += self.learningRate * v.T
+                        errors += 1
 
-                if not p == c:  # If the prediction is wrong
-                    for i in xrange(self.numClasses):
-                        if i == p:
-                            self.weights[i] -= self.learningRate * v.T
-                        else:
-                            self.weights[i] += self.learningRate * v.T
-                    errors += 1
+                    # Accumulate the w vectors
+                    for i in range(len(aw)):
+                        aw[i] += self.weights[i]
 
-                # Accumulate the w vectors
-                for i in range(len(aw)):
-                    aw[i] += self.weights[i]
+                    iterations += 1
 
-                iterations += 1
+                if errors == 0:
+                    break
+            # Perform the averaging
+            for i in range(len(aw)):
+                aw[i] /= iterations
 
-            if errors == 0:
-                break
-        # Perform the averaging
-        for i in range(len(aw)):
-            aw[i] /= iterations
-
-        self.weights = aw
+            self.weights = aw
 
     def predict(self, v):
         ''' Multiclass prediction '''
