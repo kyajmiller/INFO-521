@@ -6,24 +6,24 @@ import numpy
 class Perceptron:
     ''' Implementation of the multinomial perceptron '''
 
-    def __init__(self, classes=3, epocs=10, lrate=1):
-        self.epocs = epocs
-        self.classes = classes
-        self.lrate = lrate
-        self.w = None  # The perceptron is not initialized yet
+    def __init__(self, numClasses=3, epochs=10, learningRate=1):
+        self.numClasses = numClasses
+        self.epochs = epochs
+        self.learningRate = learningRate
+        self.weights = None  # The perceptron is not initialized yet
 
     def train(self, X, t):
         ''' Learn the weights from the training data '''
 
-        assert self.w == None, "This perceptron is already trained"
+        assert self.weights == None, "This perceptron is already trained"
 
         # initialize the weights
         # self.w = [lil_matrix(X[0].shape).T for i in xrange(self.classes)]
-        self.w = [numpy.matrix(numpy.zeros(X.shape[1])).T for i in xrange(self.classes)]
-        aw = [numpy.matrix(numpy.zeros(X.shape[1])).T for i in xrange(self.classes)]
+        self.weights = [numpy.matrix(numpy.zeros(X.shape[1])).T for i in xrange(self.numClasses)]
+        aw = [numpy.matrix(numpy.zeros(X.shape[1])).T for i in xrange(self.numClasses)]
         iterations = 0
 
-        for i in xrange(self.epocs):
+        for i in xrange(self.epochs):
             errors = 0
 
             for a, c in zip(range(X.shape[0]), t):
@@ -33,16 +33,16 @@ class Perceptron:
                 p = self.predict(v)
 
                 if not p == c:  # If the prediction is wrong
-                    for i in xrange(self.classes):
+                    for i in xrange(self.numClasses):
                         if i == p:
-                            self.w[i] -= self.lrate * v.T
+                            self.weights[i] -= self.learningRate * v.T
                         else:
-                            self.w[i] += self.lrate * v.T
+                            self.weights[i] += self.learningRate * v.T
                     errors += 1
 
                 # Accumulate the w vectors
                 for i in range(len(aw)):
-                    aw[i] += self.w[i]
+                    aw[i] += self.weights[i]
 
                 iterations += 1
 
@@ -52,11 +52,11 @@ class Perceptron:
         for i in range(len(aw)):
             aw[i] /= iterations
 
-        self.w = aw
+        self.weights = aw
 
     def predict(self, v):
         ''' Multiclass prediction '''
-        p = [v.dot(w)[0] for w in self.w]
+        p = [v.dot(w)[0] for w in self.weights]
 
         return p.index(max(p))
 
