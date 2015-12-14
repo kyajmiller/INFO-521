@@ -17,7 +17,12 @@ class LogisticRegression(object):
         y = 1 / (1 + numpy.exp(-x))
         return y
 
-    def negativeLikelihood(self, betas):
+    def likelihood(self, betas):
         likelihood = 0
         for i in range(self.n):
-            likelihood +=
+            likelihood += numpy.log(self.sigmoid(self.trainingLabels[i] * numpy.dot(betas, self.trainingVectors[i, :])))
+
+        for j in range(1, self.trainingVectors.shape[1]):
+            likelihood -= (self.alpha / 2) * numpy.power(self.betas[j], 2)
+
+        return likelihood
