@@ -1,3 +1,4 @@
+from __future__ import division
 import re
 import numpy
 import pandas
@@ -8,7 +9,7 @@ import math
 def getDataSets():
     # open input file
     data = open('foodTweets.txt', 'r')
-    allData = data.readlines()
+    allData = data.readlines()[:200]
 
     # shuffle data so get different sets each time
     random.shuffle(allData)
@@ -265,4 +266,4 @@ def printAccuracyPrecisionRecallF1(accuracy, precision, recall, f1):
     print 'Accuracy:\t%.3f' % accuracy
     print 'Precision:\t%.3f' % precision
     print 'Recall:\t\t%.3f' % recall
-    print 'F1:\t\t%.3f' % f1
+    print 'F1:\t\t\t%.3f' % f1
