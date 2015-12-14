@@ -28,27 +28,33 @@ def getDataSets():
 def makeDataSet(dataLines):
     dataSet = []
 
+    # loop through each line
     for line in dataLines:
         state, tweet = line.split('\t', 1)
         label = getLabelStatePoliticalAffiliation(state)
         features = []
 
+        # get unigrams and bigrams
         unigrams = getUnigramsFilterOutBadTokens(tweet)
         bigrams = getBigrams(unigrams)
 
+        # see how many times liberal/conservative terms appear
         liberalCount = getLiberalCount(unigrams, bigrams)
         conservativeCount = getConservativeCount(unigrams, bigrams)
 
+        # make relevant features, append to features list
         if liberalCount > 0:
             features.append("Liberal Count: %i" % liberalCount)
         if conservativeCount > 0:
             features.append("Conservative Count: %i" % conservativeCount)
 
+        # append the unigrams and bigrams to the list of features
         for unigram in unigrams:
             features.append(unigram)
         for bigram in bigrams:
             features.append(bigram)
 
+        # join together the features and label, append to the dataset
         tweetinfo = {'state': state, 'label': label, 'features': features}
         dataSet.append(tweetinfo)
 
