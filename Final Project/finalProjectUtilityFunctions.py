@@ -9,7 +9,7 @@ import math
 def getDataSets():
     # open input file
     data = open('foodTweets.txt', 'r')
-    allData = data.readlines()[:50000]
+    allData = data.readlines()
 
     # shuffle data so get different sets each time
     random.shuffle(allData)
