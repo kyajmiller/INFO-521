@@ -15,6 +15,11 @@ def makeDataSet(dataLines):
         liberalCount = getLiberalCount(unigrams, bigrams)
         conservativeCount = getConservativeCount(unigrams, bigrams)
 
+        if liberalCount > 0:
+            features.append("Liberal Count: %i" % liberalCount)
+        if conservativeCount > 0:
+            features.append("Conservative Count: %i" % conservativeCount)
+
 
 
 
