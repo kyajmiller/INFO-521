@@ -41,15 +41,13 @@ print "Predicting results for my Perceptron..."
 frame['myPerceptron'] = pandas.Series(
     [myPerceptron.predict(testingVectors[i, :]) for i in xrange(testingVectors.shape[0])])
 
-print frame['myPerceptron'][0]
-
 # display results for class 0 - liberal
-print '\nResults for the multinomial perceptron for class 0:\n'
+print '\nResults for the implemented multinomial perceptron for class 0:\n'
 printAccuracyPrecisionRecallF1(*computeAccuracyPrecisionRecallF1(
     *computeTrueFalsePostivesNegatives(frame['label'], frame['myPerceptron'], desiredClass=0)))
 
 # display results for class 1 - conservative
-print '\nResults for the multinomial perceptron for class 1:\n'
+print '\nResults for the implemented multinomial perceptron for class 1:\n'
 printAccuracyPrecisionRecallF1(*computeAccuracyPrecisionRecallF1(
     *computeTrueFalsePostivesNegatives(frame['label'], frame['myPerceptron'], desiredClass=1)))
 
@@ -62,11 +60,11 @@ print "Predicting results for sklearn Perceptron..."
 frame['skPerceptron'] = skPerceptron.predict(testingVectors)
 
 # display results for class 0 - liberal
-print '\nResults for the multinomial perceptron for class 0:\n'
+print '\nResults for the sklearn perceptron for class 0:\n'
 printAccuracyPrecisionRecallF1(*computeAccuracyPrecisionRecallF1(
     *computeTrueFalsePostivesNegatives(frame['label'], frame['skPerceptron'], desiredClass=0)))
 
 # display results for class 1 - conservative
-print '\nResults for the multinomial perceptron for class 1:\n'
+print '\nResults for the sklearn perceptron for class 1:\n'
 printAccuracyPrecisionRecallF1(*computeAccuracyPrecisionRecallF1(
     *computeTrueFalsePostivesNegatives(frame['label'], frame['skPerceptron'], desiredClass=1)))
