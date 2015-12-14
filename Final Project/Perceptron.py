@@ -35,7 +35,8 @@ class Perceptron:
 
                     prediction = self.predict(value)
 
-                    if not prediction == label:  # If the prediction is wrong
+                    if prediction != label:
+                        # if prediction is wrong, adjust weights accordingly
                         for k in xrange(self.numClasses):
                             if k == prediction:
                                 self.weights[k] -= self.learningRate * numpy.transpose(value)
@@ -43,7 +44,7 @@ class Perceptron:
                                 self.weights[k] += self.learningRate * numpy.transpose(value)
                         errors += 1
 
-                    # Accumulate the w vectors
+                    # get weight vectors
                     for l in range(len(adjustedWeights)):
                         adjustedWeights[l] += self.weights[l]
 
@@ -51,18 +52,18 @@ class Perceptron:
 
                 if errors == 0:
                     break
-            # Perform the averaging
+            # do averaging
             for m in range(len(adjustedWeights)):
                 adjustedWeights[m] /= iterations
 
             self.weights = adjustedWeights
             self.isTrained = True
 
-    def predict(self, v):
-        ''' Multiclass prediction '''
-        p = [numpy.dot(v, w)[0] for w in self.weights]
+    def predict(self, value):
+        prediction = [numpy.dot(value, w)[0] for w in self.weights]
 
-        return p.index(max(p))
+        # return the index of the maximum predicted value
+        return prediction.index(max(prediction))
 
 
 '''
