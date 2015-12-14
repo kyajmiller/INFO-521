@@ -210,7 +210,7 @@ def getStopWordsList():
     return stopwordsList
 
 
-def makeFeaturesVectors(self, totalFeaturesList, featuresValueCountsIndexes):
+def makeFeaturesVectors(totalFeaturesList, featuresValueCountsIndexes):
     featuresVectors = numpy.matrix(numpy.zeros((len(totalFeaturesList), featuresValueCountsIndexes.shape[0] + 1)))
 
     # insert bias
