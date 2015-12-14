@@ -58,7 +58,7 @@ class Perceptron:
 
     def predict(self, v):
         ''' Multiclass prediction '''
-        p = [v.dot(w)[0] for w in self.weights]
+        p = [numpy.dot(v, w)[0] for w in self.weights]
 
         return p.index(max(p))
 
