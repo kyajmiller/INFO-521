@@ -15,30 +15,32 @@ for index, value in enumerate(testingSet):
 # get the unique features and their frequencies
 features = pandas.Series(list(itertools.chain(*[t['features'] for t in trainingSet])))
 features = features.value_counts()
-print "Number of Features: %i" % features.size
+print 'Number of Features: %i' % features.size
 
 # filter out features that occur less than a given number of times to prevent memory issues
 threshold = 6
 features = features[features >= threshold]
-print "Number of Features after Filtering: %i" % features.size
+print 'Number of Features after Filtering: %i' % features.size
+print '\n'
 
 # make features vectors
-print "Building training vectors..."
+print 'Building training vectors...'
 trainingVectors = makeFeaturesVectors([t['features'] for t in trainingSet], features.index)
-print "Training vectors complete."
-print "Building testing vectors..."
+print 'Training vectors complete.'
+print 'Building testing vectors...'
 testingVectors = makeFeaturesVectors([t['features'] for t in testingSet], features.index)
-print "Testing vectors complete."
+print 'Testing vectors complete.'
 print '\n'
 
 # train my implementaion of the Perceptron
-print "Training my perceptron..."
+print 'Training my perceptron...'
 myPerceptron = MyPerceptron(numClasses=2, epochs=10, learningRate=1.5)
 myPerceptron.train(trainingVectors, [t['label'] for t in trainingSet])
-print "My perceptron trained."
+print 'My perceptron trained.'
+print '\n'
 
 # get the predictions for my Perceptron
-print "Predicting results for my Perceptron..."
+print 'Predicting results for my Perceptron...'
 frame['myPerceptron'] = pandas.Series(
     [myPerceptron.predict(testingVectors[i, :]) for i in xrange(testingVectors.shape[0])])
 
@@ -56,10 +58,11 @@ print '\n'
 
 # now do the same thing, but with the sklearn Perceptron
 skPerceptron = SkPerceptron()
-print "Training sklearn Perceptron..."
+print 'Training sklearn Perceptron...'
 skPerceptron.fit(trainingVectors, [t['label'] for t in trainingSet])
-print "sklearn Perceptron trained."
-print "Predicting results for sklearn Perceptron..."
+print 'Sklearn Perceptron trained.'
+print '\n'
+print 'Predicting results for sklearn Perceptron...'
 frame['skPerceptron'] = skPerceptron.predict(testingVectors)
 
 # display results for class 0 - liberal
