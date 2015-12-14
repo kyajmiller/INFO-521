@@ -31,8 +31,6 @@ def makeDataSet(dataLines):
     return dataSet
 
 
-
-
 def getLabelStatePoliticalAffiliation(state):
     # if state is liberal, label = 0; if conservative, label = 1
     # declare lists of liberal states and conservative states
