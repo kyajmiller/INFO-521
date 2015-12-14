@@ -35,7 +35,7 @@ def makeDataSet(dataLines):
         features = []
 
         # get unigrams and bigrams
-        unigrams = getUnigramsFilterOutBadTokens(tweet.lower())
+        unigrams = getUnigramsFilterOutBadTokens(tweet)
         bigrams = getBigrams(unigrams)
 
         # see how many times liberal/conservative terms appear
@@ -132,15 +132,15 @@ def getLiberalCount(unigrams, bigrams):
 
     liberalCount = 0
     for unigram in unigrams:
-        if unigram in liberalFoods:
+        if unigram.lower() in liberalFoods:
             liberalCount += 1
-        if unigram in liberalFoodsHashtags:
+        if unigram.lower() in liberalFoodsHashtags:
             liberalCount += 1
 
     for bigram in bigrams:
-        if bigram in liberalFoods:
+        if bigram.lower() in liberalFoods:
             liberalCount += 1
-        if bigram in liberalFoodsHashtags:
+        if bigram.lower() in liberalFoodsHashtags:
             liberalCount += 1
 
     return liberalCount
