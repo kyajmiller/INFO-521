@@ -1,4 +1,5 @@
 from Perceptron import *
+from finalProjectUtilityFunctions import *
 from sklearn.linear_model import Perceptron
 import random
 import math
@@ -17,4 +18,10 @@ def getDataSets():
     trainingSet = allData[:trainingSize]
     testingSet = allData[trainingSize:]
 
+    trainingSet = makeDataSet(trainingSet)
+    testingSet = makeDataSet(testingSet)
+
     return trainingSet, testingSet
+
+
+trainingSet, testingSet = getDataSets()
