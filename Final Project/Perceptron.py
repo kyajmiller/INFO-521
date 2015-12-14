@@ -15,24 +15,23 @@ class Perceptron:
         self.weights = None
 
     def train(self, trainingVectors, trainingLabels):
-        ''' Learn the weights from the training data '''
+        # get the weights
+
         if self.isTrained:
-            print("This perceptron is already trained")
+            print("Perceptron is already trained!")
         else:
             # initialize the weights
             self.weights = [numpy.transpose(numpy.matrix(numpy.zeros(trainingVectors.shape[1]))) for i in
                             xrange(self.numClasses)]
             adjustedWeights = [numpy.transpose(numpy.matrix(numpy.zeros(trainingVectors.shape[1]))) for i in
                                xrange(self.numClasses)]
-            iterations = 0
+            numIterations = 0
 
             for i in xrange(self.epochs):
                 errors = 0
 
                 for j, label in zip(range(trainingVectors.shape[0]), trainingLabels):
-
                     value = trainingVectors[j, :]
-
                     prediction = self.predict(value)
 
                     if prediction != label:
@@ -48,22 +47,24 @@ class Perceptron:
                     for l in range(len(adjustedWeights)):
                         adjustedWeights[l] += self.weights[l]
 
-                    iterations += 1
+                    numIterations += 1
 
+                # if there's no errors, then it's done
                 if errors == 0:
                     break
+
             # do averaging
             for m in range(len(adjustedWeights)):
-                adjustedWeights[m] /= iterations
+                adjustedWeights[m] /= numIterations
 
             self.weights = adjustedWeights
             self.isTrained = True
 
     def predict(self, value):
-        prediction = [numpy.dot(value, w)[0] for w in self.weights]
-
         # return the index of the maximum predicted value
-        return prediction.index(max(prediction))
+        prediction = [numpy.dot(value, w)[0] for w in self.weights]
+        maxPrediction = prediction.index(max(prediction))
+        return maxPrediction
 
 
 '''
