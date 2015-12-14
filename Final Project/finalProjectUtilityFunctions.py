@@ -25,6 +25,11 @@ def makeDataSet(dataLines):
         for bigram in bigrams:
             features.append(bigram)
 
+        tweetinfo = {'state': state, 'label': label, 'features': features}
+        dataSet.append(tweetinfo)
+
+    return dataSet
+
 
 
 
