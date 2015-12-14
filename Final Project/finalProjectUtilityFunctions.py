@@ -53,6 +53,15 @@ def getUnigramsFilterOutBadTokens(tweet):
     return unigrams
 
 
+def getBigrams(unigrams):
+    bigrams = []
+
+    for i in xrange(len(unigrams) - 1):
+        bigrams.append('%s %s' % (unigrams[i], unigrams[i + 1]))
+
+    return bigrams
+
+
 def checkLexicons(tokens):
     # liberal lexicon vs conservative lexicon
     liberalFoods = ['curry', 'bistro', 'fresh', 'fruit', 'strawberry', 'crunchy', 'thin', 'coconut', 'lamb', 'gnocchi',
