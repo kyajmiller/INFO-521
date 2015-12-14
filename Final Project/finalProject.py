@@ -51,6 +51,8 @@ print '\nResults for the implemented multinomial perceptron for class 1:\n'
 printAccuracyPrecisionRecallF1(*computeAccuracyPrecisionRecallF1(
     *computeTrueFalsePostivesNegatives(frame['label'], frame['myPerceptron'], desiredClass=1)))
 
+print '\n'
+
 # now do the same thing, but with the sklearn Perceptron
 skPerceptron = SkPerceptron()
 print "Training sklearn Perceptron..."
