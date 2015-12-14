@@ -31,29 +31,29 @@ class Perceptron:
 
                 for j, label in zip(range(trainingVectors.shape[0]), trainingLabels):
 
-                    v = trainingVectors[j, :]
+                    value = trainingVectors[j, :]
 
-                    p = self.predict(v)
+                    prediction = self.predict(value)
 
-                    if not p == label:  # If the prediction is wrong
-                        for i in xrange(self.numClasses):
-                            if i == p:
-                                self.weights[i] -= self.learningRate * numpy.transpose(v)
+                    if not prediction == label:  # If the prediction is wrong
+                        for k in xrange(self.numClasses):
+                            if k == prediction:
+                                self.weights[k] -= self.learningRate * numpy.transpose(value)
                             else:
-                                self.weights[i] += self.learningRate * numpy.transpose(v)
+                                self.weights[k] += self.learningRate * numpy.transpose(value)
                         errors += 1
 
                     # Accumulate the w vectors
-                    for i in range(len(adjustedWeights)):
-                        adjustedWeights[i] += self.weights[i]
+                    for l in range(len(adjustedWeights)):
+                        adjustedWeights[l] += self.weights[l]
 
                     iterations += 1
 
                 if errors == 0:
                     break
             # Perform the averaging
-            for i in range(len(adjustedWeights)):
-                adjustedWeights[i] /= iterations
+            for m in range(len(adjustedWeights)):
+                adjustedWeights[m] /= iterations
 
             self.weights = adjustedWeights
             self.isTrained = True
