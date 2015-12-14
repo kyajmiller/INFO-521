@@ -3,6 +3,8 @@ def makeDataSet(dataLines):
 
     for line in dataLines:
         state, tweet = line.split('\t', 1)
+        label = getLabelStatePoliticalAffiliation(state)
+
 
 
 def getLabelStatePoliticalAffiliation(state):
@@ -15,11 +17,9 @@ def getLabelStatePoliticalAffiliation(state):
                           'KY', 'TN', 'MS', 'AL', 'WV', 'NC', 'SC', 'GA', 'AK']
 
     if state in liberalStates:
-        label = 0
+        return 0
     elif state in conservativeStates:
-        label = 1
-
-    return label
+        return 1
 
 
 def checkLexicons(tokens):
