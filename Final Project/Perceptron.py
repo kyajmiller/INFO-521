@@ -29,13 +29,13 @@ class Perceptron:
             for i in xrange(self.epochs):
                 errors = 0
 
-                for a, c in zip(range(trainingVectors.shape[0]), trainingLabels):
+                for j, label in zip(range(trainingVectors.shape[0]), trainingLabels):
 
-                    v = trainingVectors[a, :]
+                    v = trainingVectors[j, :]
 
                     p = self.predict(v)
 
-                    if not p == c:  # If the prediction is wrong
+                    if not p == label:  # If the prediction is wrong
                         for i in xrange(self.numClasses):
                             if i == p:
                                 self.weights[i] -= self.learningRate * numpy.transpose(v)
