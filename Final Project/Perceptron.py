@@ -10,7 +10,9 @@ class Perceptron:
         self.numClasses = numClasses
         self.epochs = epochs
         self.learningRate = learningRate
-        self.weights = None  # The perceptron is not initialized yet
+
+        self.isTrained = False
+        self.weights = None
 
     def train(self, X, t):
         ''' Learn the weights from the training data '''
