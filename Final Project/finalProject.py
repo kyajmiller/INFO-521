@@ -32,7 +32,7 @@ print "Testing vectors complete."
 
 # train my implementaion of the Perceptron
 print "Training my perceptron..."
-myPerceptron = MyPerceptron(numClasses=2, epochs=100, learningRate=1.5)
+myPerceptron = MyPerceptron(numClasses=2, epochs=10, learningRate=1.5)
 myPerceptron.train(trainingVectors, [t['label'] for t in trainingSet])
 print "My perceptron trained."
 
@@ -40,6 +40,8 @@ print "My perceptron trained."
 print "Predicting results for my Perceptron..."
 frame['myPerceptron'] = pandas.Series(
     [myPerceptron.predict(testingVectors[i, :]) for i in xrange(testingVectors.shape[0])])
+
+print frame['myPerceptron'][0]
 
 # display results for class 0 - liberal
 print '\nResults for the multinomial perceptron for class 0:\n'
