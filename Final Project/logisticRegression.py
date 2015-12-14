@@ -26,3 +26,6 @@ class LogisticRegression(object):
             likelihood -= (self.alpha / 2) * numpy.power(self.betas[j], 2)
 
         return likelihood
+
+    def negativeLikelihood(self, betas):
+        return -self.likelihood(betas)
