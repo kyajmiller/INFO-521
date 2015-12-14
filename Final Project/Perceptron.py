@@ -20,7 +20,6 @@ class Perceptron:
             print("This perceptron is already trained")
         else:
             # initialize the weights
-            # self.w = [lil_matrix(X[0].shape).T for i in xrange(self.classes)]
             self.weights = [numpy.matrix(numpy.zeros(X.shape[1])).T for i in xrange(self.numClasses)]
             aw = [numpy.matrix(numpy.zeros(X.shape[1])).T for i in xrange(self.numClasses)]
             iterations = 0
