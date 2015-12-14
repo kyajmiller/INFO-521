@@ -35,7 +35,7 @@ def makeDataSet(dataLines):
         features = []
 
         # get unigrams and bigrams
-        unigrams = getUnigramsFilterOutBadTokens(tweet)
+        unigrams = getUnigramsFilterOutBadTokens(tweet.lower())
         bigrams = getBigrams(unigrams)
 
         # see how many times liberal/conservative terms appear
@@ -109,6 +109,7 @@ def getUnigramsFilterOutBadTokens(tweet):
 
 
 def getBigrams(unigrams):
+    # create a list of bigrams from string concatenation
     bigrams = []
 
     for i in xrange(len(unigrams) - 1):
