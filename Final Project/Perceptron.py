@@ -4,9 +4,9 @@ import numpy
 
 class Perceptron(object):
     def __init__(self, numClasses=2, epochs=10, learningRate=1.5):
-        self.numClasses = numClasses
-        self.epochs = epochs
-        self.learningRate = learningRate
+        self.numClasses = numClasses  # how many classes, this absolutely needs to match the number of unique labels used
+        self.epochs = epochs  # how many times to run the process of adjusting the weights via the learningRate
+        self.learningRate = learningRate  # the amount by which the weights are adjusted each time
 
         self.isTrained = False
         self.weights = None
@@ -22,6 +22,8 @@ class Perceptron(object):
                             xrange(self.numClasses)]
             adjustedWeights = [numpy.transpose(numpy.matrix(numpy.zeros(trainingVectors.shape[1]))) for i in
                                xrange(self.numClasses)]
+
+            # keep track of how many iterations were run so we can average the values of the adjusted weights
             numIterations = 0
 
             for i in xrange(self.epochs):
