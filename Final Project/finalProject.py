@@ -23,14 +23,21 @@ print "Number of Features after Filtering: %i" % features.size
 
 # Feature Vectors
 print "Building Features Vectors..."
+print "Building training vectors..."
 trainingVectors = makeFeaturesVectors([t['features'] for t in trainingSet], features.index)
+print "Training vectors complete."
+print "Building testing vectors..."
 testingVectors = makeFeaturesVectors([t['features'] for t in testingSet], features.index)
+print "Testing vectors complete."
 
 # train my implementaion of the Perceptron
+print "Training my perceptron..."
 myPerceptron = MyPerceptron(numClasses=2, epochs=100, learningRate=1.5)
 myPerceptron.train(trainingVectors, [t['label'] for t in trainingSet])
+print "My perceptron trained."
 
 # get the predictions for my Perceptron
+print "Predicting results for my Perceptron..."
 frame['myPerceptron'] = pandas.Series(
     [myPerceptron.predict(testingVectors[i, :]) for i in xrange(testingVectors.shape[0])])
 
@@ -46,7 +53,10 @@ printAccuracyPrecisionRecallF1(*computeAccuracyPrecisionRecallF1(
 
 # now do the same thing, but with the sklearn Perceptron
 skPerceptron = SkPerceptron()
+print "Training sklearn Perceptron..."
 skPerceptron.fit(trainingVectors, [t['label'] for t in trainingSet])
+print "sklearn Perceptron trained."
+print "Predicting results for sklearn Perceptron..."
 frame['skPerceptron'] = skPerceptron.predict(testingVectors)
 
 # display results for class 0 - liberal
