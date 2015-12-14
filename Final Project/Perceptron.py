@@ -14,22 +14,24 @@ class Perceptron:
         self.isTrained = False
         self.weights = None
 
-    def train(self, X, t):
+    def train(self, trainingVectors, trainingLabels):
         ''' Learn the weights from the training data '''
         if self.isTrained:
             print("This perceptron is already trained")
         else:
             # initialize the weights
-            self.weights = [numpy.transpose(numpy.matrix(numpy.zeros(X.shape[1]))) for i in xrange(self.numClasses)]
-            aw = [numpy.transpose(numpy.matrix(numpy.zeros(X.shape[1]))) for i in xrange(self.numClasses)]
+            self.weights = [numpy.transpose(numpy.matrix(numpy.zeros(trainingVectors.shape[1]))) for i in
+                            xrange(self.numClasses)]
+            adjustedWeights = [numpy.transpose(numpy.matrix(numpy.zeros(trainingVectors.shape[1]))) for i in
+                               xrange(self.numClasses)]
             iterations = 0
 
             for i in xrange(self.epochs):
                 errors = 0
 
-                for a, c in zip(range(X.shape[0]), t):
+                for a, c in zip(range(trainingVectors.shape[0]), trainingLabels):
 
-                    v = X[a, :]
+                    v = trainingVectors[a, :]
 
                     p = self.predict(v)
 
@@ -42,18 +44,18 @@ class Perceptron:
                         errors += 1
 
                     # Accumulate the w vectors
-                    for i in range(len(aw)):
-                        aw[i] += self.weights[i]
+                    for i in range(len(adjustedWeights)):
+                        adjustedWeights[i] += self.weights[i]
 
                     iterations += 1
 
                 if errors == 0:
                     break
             # Perform the averaging
-            for i in range(len(aw)):
-                aw[i] /= iterations
+            for i in range(len(adjustedWeights)):
+                adjustedWeights[i] /= iterations
 
-            self.weights = aw
+            self.weights = adjustedWeights
             self.isTrained = True
 
     def predict(self, v):
