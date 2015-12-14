@@ -50,9 +50,9 @@ def makeDataSet(dataLines):
 
         # make relevant features, append to features list
         if liberalCount > 0:
-            features.append("Liberal Count: %i" % liberalCount)
+            features.append('Liberal Count: %i' % liberalCount)
         if conservativeCount > 0:
-            features.append("Conservative Count: %i" % conservativeCount)
+            features.append('Conservative Count: %i' % conservativeCount)
 
         # append the unigrams and bigrams to the list of features
         for unigram in unigrams:
