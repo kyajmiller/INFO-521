@@ -152,7 +152,10 @@ def compute_metrics(tp, tn, fp, fn):
     precision = tp / (tp + fp)
     recall = tp / (tp + fn)
     accuracy = (tp + tn) / (tp + tn + fp + fn)
-    f1 = 2 * (precision * recall / (precision + recall))
+    if precision + recall != 0:
+        f1 = 2 * (precision * recall / (precision + recall))
+    else:
+        f1 = 0
 
     return accuracy, precision, recall, f1
 
