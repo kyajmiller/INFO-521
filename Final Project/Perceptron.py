@@ -20,8 +20,8 @@ class Perceptron:
             print("This perceptron is already trained")
         else:
             # initialize the weights
-            self.weights = [numpy.matrix(numpy.zeros(X.shape[1])).T for i in xrange(self.numClasses)]
-            aw = [numpy.matrix(numpy.zeros(X.shape[1])).T for i in xrange(self.numClasses)]
+            self.weights = [numpy.transpose(numpy.matrix(numpy.zeros(X.shape[1]))) for i in xrange(self.numClasses)]
+            aw = [numpy.transpose(numpy.matrix(numpy.zeros(X.shape[1]))) for i in xrange(self.numClasses)]
             iterations = 0
 
             for i in xrange(self.epochs):
@@ -36,9 +36,9 @@ class Perceptron:
                     if not p == c:  # If the prediction is wrong
                         for i in xrange(self.numClasses):
                             if i == p:
-                                self.weights[i] -= self.learningRate * v.T
+                                self.weights[i] -= self.learningRate * numpy.transpose(v)
                             else:
-                                self.weights[i] += self.learningRate * v.T
+                                self.weights[i] += self.learningRate * numpy.transpose(v)
                         errors += 1
 
                     # Accumulate the w vectors
