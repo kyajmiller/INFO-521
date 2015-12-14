@@ -1,4 +1,5 @@
 from __future__ import division
+from scipy.optimize.optimize import fmin_cg, fmin_bfgs, fmin
 import numpy
 
 
@@ -29,3 +30,12 @@ class LogisticRegression(object):
 
     def negativeLikelihood(self, betas):
         return -self.likelihood(betas)
+
+    def train(self):
+        dBk = lambda B, k: (k > 0) * self.alpha * B[k] - numpy.sum([self.trainingLabels[i] * self.trainingVectors[
+            i, k] * self.sigmoid(-self.trainingLabels[i] * numpy.dot(B, self.trainingVectors[i, :])) for i in
+                                                                    range(self.n)])
+
+        dB = lambda B: numpy.array([dBk(B, j) for j in range(self.trainingVectors.shape[1])])
+
+        self.betas = fmin_bfgs(self.negativeLikelihood(self.betas), self.betas, fprime=dB)
