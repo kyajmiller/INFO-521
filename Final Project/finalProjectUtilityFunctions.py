@@ -160,15 +160,15 @@ def getConservativeCount(unigrams, bigrams):
 
     conservativeCount = 0
     for unigram in unigrams:
-        if unigram in conservativeFoods:
+        if unigram.lower() in conservativeFoods:
             conservativeCount += 1
-        if unigram in conservativeFoodsHashtags:
+        if unigram.lower() in conservativeFoodsHashtags:
             conservativeCount += 1
 
     for bigram in bigrams:
-        if bigram in conservativeFoods:
+        if bigram.lower() in conservativeFoods:
             conservativeCount += 1
-        if bigram in conservativeFoodsHashtags:
+        if bigram.lower() in conservativeFoodsHashtags:
             conservativeCount += 1
 
     return conservativeCount
